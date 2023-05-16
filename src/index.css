@@ -1,13 +1,83 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Fira Code", monospace;
+  background: #ffffff;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --colorPrimary: #0d263b;
+  --colorSecondary: #696969;
+  --colorActive: #0061df;
+
+  --marginNavLink: 0 32px;
+  --padding: 0 130px 0 130px;
+  --height: 64px;
+  --fontSize: 20px;
+
+  --logoWidth: 30px;
+  --logoMargin: 12px;
+  --logoHeaderFsize: 22px; 
+
+  --width: 1440px;
+}
+
+.title {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  /* line-height: 36px; */
+  /* text-align: center; */
+  letter-spacing: -0.02em;
+  color: #0d263b;
+}
+
+.subTitle {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 28px;
+  color: #0d263b;
+}
+
+.description {
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  /* line-height: 24px; */
+  color: #696969;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.nocopy {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+  height: 100% !important;
+  display: flex;
+  align-items: center;
+}
+
+.ant-select.ant-select-single.ant-select-show-arrow {
+  width: 200px;
+  border: none;
 }
