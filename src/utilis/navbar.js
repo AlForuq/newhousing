@@ -1,4 +1,4 @@
-import useUniqueId from "../hooks/useId";
+// import useUniqueId from "../hooks/useId";
 import { HomePage } from "../pages/HomePage";
 import { ContactPage } from "../pages/ContactPage";
 import { PropertiesPage } from "../pages/PropertiesPage";
@@ -47,26 +47,26 @@ export const navbar = [
     hidden: false,
     private: false,
   },
-  // {
-  //     id: 4,
-  //     title: "Sign In",
-  //     path: "/signin",
-  //     Element: <SigninPage />,
-  //     search: "?",
-  //     hidden: true,
-  //     private: false,
-  //     param: true,
-  // },
-  // {
-  //     id: 5,
-  //     title: "Sign Up",
-  //     path: "/signup",
-  //     Element: <Generic />,
-  //     search: "?",
-  //     hidden: true,
-  //     private: false,
-  //     param: true,
-  // },
+  {
+    id: 4,
+    title: "Sign In",
+    path: "/signin",
+    Element: <h1>Sign in</h1>,
+    search: "?",
+    hidden: true,
+    private: false,
+    // param: true,
+  },
+  {
+    id: 5,
+    title: "Sign Up",
+    path: "/signup",
+    Element: <h1>Sign up</h1>,
+    search: "?",
+    hidden: true,
+    private: false,
+    // param: true,
+  },
   // {
   //     id: 6,
   //     title: "My Properties",

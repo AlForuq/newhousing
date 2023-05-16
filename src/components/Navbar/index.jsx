@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Logo, LogoHeader, Main, Section, Wrapper } from "./style";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { navbar } from "../../utilis/navbar";
+import {Button} from "../../Generics";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -9,21 +10,25 @@ export const Navbar = () => {
     <Container>
       <Main>
         <Wrapper>
-          <Section onClick={() => navigate("/home")} logo={'logo'} >
+          <Section onClick={() => navigate("/home")} logo={"logo"}>
             <Logo />
             <LogoHeader>Houzing</LogoHeader>
           </Section>
           <Section>
-            {navbar.map(({ title, id, path }) => {
+            {navbar.map(({ title, id, path, hidden }) => {
               return (
-                <NavLink to={path} key={id}>
-                  {title}
-                </NavLink>
+                !hidden && (
+                  <NavLink to={path} key={id}>
+                    {title}
+                  </NavLink>
+                )
               );
             })}
           </Section>
           <Section>
-            <button>Login</button>
+            <Button onClick={() => navigate("./signin")} width={130}>
+              Login
+            </Button>
           </Section>
         </Wrapper>
       </Main>
