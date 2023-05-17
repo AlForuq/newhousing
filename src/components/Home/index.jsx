@@ -6,7 +6,6 @@ export const Home = () => {
   return (
     <Container>
       Home
-      <Input placeholder={"test"} />
     </Container>
   );
 };

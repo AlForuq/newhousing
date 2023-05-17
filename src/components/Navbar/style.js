@@ -7,7 +7,6 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  background: var(--colorPrimary);
   color: #fff;
   padding: var(--padding);
   height: var(--height);
@@ -19,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 export const Main = styled.div`
-  background: #0d263b;
+  background: var(--colorPrimary);
   display: flex; // 2
   justify-content: center; // 2
 `;
@@ -28,7 +27,7 @@ const Section = styled.div`
   display: flex;
   align-items: center;
   cursor: ${({ logo }) => logo === "logo" && "pointer"};
-
+  
   a:active {
     color: var(--colorSecondary);
   }

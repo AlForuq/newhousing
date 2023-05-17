@@ -10,7 +10,9 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-
+button:active {
+  opacity: 0.7;
+}
 :root {
   --colorPrimary: #0d263b;
   --colorSecondary: #696969;
@@ -23,7 +25,7 @@ body {
 
   --logoWidth: 30px;
   --logoMargin: 12px;
-  --logoHeaderFsize: 22px; 
+  --logoHeaderFsize: 22px;
 
   --width: 1440px;
 }

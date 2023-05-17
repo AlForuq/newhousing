@@ -2,7 +2,8 @@ import React from "react";
 import { Container, Logo, LogoHeader, Main, Section, Wrapper } from "./style";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { navbar } from "../../utilis/navbar";
-import {Button} from "../../Generics";
+import { Button } from "../../Generics";
+import { Filter } from "../Filter";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -26,12 +27,17 @@ export const Navbar = () => {
             })}
           </Section>
           <Section>
-            <Button onClick={() => navigate("./signin")} width={130}>
+            <Button
+              type={"dark"}
+              onClick={() => navigate("./signin")}
+              width={130}
+            >
               Login
             </Button>
           </Section>
         </Wrapper>
       </Main>
+      <Filter />
       <Outlet />
     </Container>
   );

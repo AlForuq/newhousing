@@ -1,3 +1,4 @@
+import { Children } from "react";
 import styled from "styled-components";
 const getType = ({ type }) => {
   switch (type) {
@@ -28,9 +29,24 @@ const Container = styled.input`
   font-size: 16px;
   border: 1px solid #e6e9ec;
   outline: none;
+  padding-left: ${({ pl }) => pl || "20px"};
   height: ${({ height }) => (height ? height + "px" : "44px")};
   width: ${({ width }) => (width ? width + "px" : "100%")};
   /* ${getType}; */
 `;
 
-export { Container };
+const Wrapper = styled.div`
+  position: relative;
+  /* display: flex;
+  align-items: center; */
+  width: 100%;
+`;
+
+const Icon = styled.div`
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-40%);
+`;
+
+export { Container, Wrapper, Icon };
