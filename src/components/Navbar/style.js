@@ -27,7 +27,7 @@ const Section = styled.div`
   display: flex;
   align-items: center;
   cursor: ${({ logo }) => logo === "logo" && "pointer"};
-  
+
   a:active {
     color: var(--colorSecondary);
   }

@@ -1,11 +1,17 @@
 import React from "react";
 import { Container } from "./style";
-import  {Input}  from "../../Generics";
+import Carousel from "../Carousel";
+import { HouseCard } from "../HouseCard";
 
 export const Home = () => {
   return (
     <Container>
-      Home
+      <Carousel />
+      <div className="center" >
+        <HouseCard />
+        <HouseCard />
+        <HouseCard />
+      </div>
     </Container>
   );
 };

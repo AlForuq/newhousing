@@ -41,6 +41,10 @@ const Container = styled.button`
   min-width: ${({ width }) => (width ? width + "px" : "130px")};
   cursor: pointer;
   ${({ type }) => getType(type)};
+
+  &:active {
+    opacity: 0.7;
+  }
 `;
 
 export { Container };
