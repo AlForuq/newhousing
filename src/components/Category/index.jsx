@@ -33,7 +33,7 @@ export const Categories = () => {
     {
       // refetchOnWindowFocus: false
       onSuccess: (res) => {
-        console.log(res, "ResCAT");
+        // console.log(res, "ResCAT");
         let list = res?.data?.map((value) => {
           return (
             <Card onClick={() => onSelect(value.id)} title={value?.name} />

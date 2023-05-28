@@ -4,10 +4,14 @@ import { Button, Input } from "../../Generics";
 import {
   // Dropdown,
   Popover,
+  Select,
 } from "antd";
+import UseSearch from "../../hooks/useSearch";
 import { UseReplace } from "../../hooks/useReplace";
 import { useLocation, useNavigate } from "react-router-dom";
-import UseSearch from "../../hooks/useSearch";
+import { useQuery } from "react-query";
+const { Option } = Select;
+const { REACT_APP_BASE_URL: url } = process.env;
 
 export const Filter = () => {
   const country = useRef();
@@ -22,11 +26,28 @@ export const Filter = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const { search } = useLocation();
   const query = UseSearch();
-  console.log(query.get("country"));
 
   const onChange = ({ target: { name, value } }) => {
     navigate(`${location.pathname}${UseReplace(name, value)}`);
+  };
+
+  const { data } = useQuery(
+    [search],
+    () =>
+      fetch(`${url}/v1/categories/list`, {
+        method: "get",
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }).then((res) => res.json()),
+    {
+      refetchOnWindowFocus: false,
+      keepPreviousData: true,
+    }
+  );
+
+  const changeCategory = (e) => {
+    navigate(`/properties?category_id=${e}`);
   };
 
   const advancedSearch = (
@@ -34,28 +55,28 @@ export const Filter = () => {
       <Advanced.Title>Adress</Advanced.Title>
       <Section>
         <Input
-          value={query.get("country")}
+          value={query.get("country") || ""}
           onChange={onChange}
           ref={country}
           name="country"
           placeholder={"Country"}
         />
         <Input
-          value={query.get("region")}
+          value={query.get("region") || ""}
           onChange={onChange}
           ref={region}
           name="region"
           placeholder={"Region"}
         />
         <Input
-          value={query.get("city")}
+          value={query.get("city") || ""}
           onChange={onChange}
           ref={city}
           name="city"
           placeholder={"City"}
         />
         <Input
-          value={query.get("zip_code")}
+          value={query.get("zip_code") || ""}
           onChange={onChange}
           ref={zip_code}
           name="zip_code"
@@ -66,21 +87,21 @@ export const Filter = () => {
       <Advanced.Title>Apartment Info</Advanced.Title>
       <Section>
         <Input
-          value={query.get("address")}
+          value={query.get("address") || ""}
           onChange={onChange}
           ref={address}
           name="address"
           placeholder={"Address"}
         />
         <Input
-          value={query.get("house_name")}
+          value={query.get("house_name") || ""}
           onChange={onChange}
           ref={house_name}
           name="house_name"
           placeholder={"House Name"}
         />
         <Input
-          value={query.get("room")}
+          value={query.get("room") || ""}
           onChange={onChange}
           ref={room}
           name="room"
@@ -92,19 +113,59 @@ export const Filter = () => {
 
       <Section>
         <Input
-          value={query.get("min-price")}
+          value={query.get("min-price") || ""}
           onChange={onChange}
           ref={min}
           name="min-price"
           placeholder={"Min price"}
         />
         <Input
-          value={query.get("max-price")}
+          value={query.get("max-price") || ""}
           onChange={onChange}
           ref={max}
           name="max-price"
           placeholder={"Max price"}
         />
+        {/* <Select
+          onChange={changeCategory}
+          value={Number(query.get("category_id")) || "Category"}
+          options={[
+            {
+              value: 1,
+              label: "Villa",
+            },
+            {
+              value: 2,
+              label: "Office",
+            },
+            {
+              value: 10,
+              label: "Mansion",
+            },
+            {
+              value: 12,
+              label: "Apartment",
+            },
+            {
+              value: 13,
+              label: "Dormitory",
+            },
+          ]}
+        /> */}
+        <Select
+          style={{ width: "280px" }}
+          onChange={changeCategory}
+          value={Number(query.get("category_id")) || "Category"}
+        >
+          {/* <Select.Option value={""}>Select Category</Select.Option> */}
+          {data?.data?.map((item) => {
+            return (
+              <Option key={item.id} value={item.id}>
+                {item.name}
+              </Option>
+            );
+          })}
+        </Select>
       </Section>
 
       <Section>
@@ -124,7 +185,7 @@ export const Filter = () => {
   //   },
   // ];
 
-  console.log(UseReplace(), "useReplace");
+  // console.log(UseReplace(), "useReplace");
 
   return (
     <Container>

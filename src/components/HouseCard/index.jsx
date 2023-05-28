@@ -15,7 +15,7 @@ import {
 export const HouseCard = ({ info, mr, ml, margin, onClick }) => {
   // console.log(info, 'info');
   return (
-    <Container mr={mr} ml={ml} margin={margin} onClick={onClick}>
+    <Container mr={mr} ml={ml} margin={margin} onClick={onClick} >
       <Image
         src={(info?.attachments && info?.attachments[0]?.imgPath) || apart}
       />

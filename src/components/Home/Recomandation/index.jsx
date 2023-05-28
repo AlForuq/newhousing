@@ -52,7 +52,7 @@ export const Recomandation = () => {
     fetch(`${url}/v1/houses/list`, {})
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setList(res?.data);
       });
 
@@ -83,7 +83,7 @@ export const Recomandation = () => {
             autoWidth
             mouseTracking
             
-          />
+          /> 
           */}
 
           {/* <ArrowLeft onClick={() => slider.current?.slidePrev()}>

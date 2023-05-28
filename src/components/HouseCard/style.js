@@ -12,7 +12,7 @@ export const Container = styled.div`
   /* overflow: hidden; */
   flex-direction: column;
   width: 100%;
-  min-width: 330px;
+  min-width: 330px !important;
   max-width: 380px;
   height: 450px;
   background: #ffffff;
@@ -65,6 +65,7 @@ Info.Text = styled.div`
   display: flex;
   white-space: nowrap;
   overflow: hidden;
+
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
