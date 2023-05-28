@@ -1,7 +1,9 @@
+import React from "react";
 // import useUniqueId from "../hooks/useId";
 import { HomePage } from "../pages/HomePage";
 import { ContactPage } from "../pages/ContactPage";
-import { PropertiesPage } from "../pages/PropertiesPage";
+// import { PropertiesPage } from "../pages/PropertiesPage";
+const PropertiesPage = React.lazy(() => import("../pages/PropertiesPage"));
 // import { AddNewPage } from "../pages/AddNew";
 // import { DetailsPage } from "../pages/Details";
 // import { Generic } from "../pages/generic";
@@ -23,7 +25,11 @@ export const navbar = [
     id: 2,
     title: "Properties",
     path: "/properties",
-    Element: <PropertiesPage />,
+    Element: (
+      <React.Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
+        <PropertiesPage />
+      </React.Suspense>
+    ),
     search: "?",
     hidden: false,
     private: false,

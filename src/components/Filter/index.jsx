@@ -5,6 +5,9 @@ import {
   // Dropdown,
   Popover,
 } from "antd";
+import { UseReplace } from "../../hooks/useReplace";
+import { useLocation, useNavigate } from "react-router-dom";
+import UseSearch from "../../hooks/useSearch";
 
 export const Filter = () => {
   const country = useRef();
@@ -16,35 +19,43 @@ export const Filter = () => {
   const room = useRef();
   const min = useRef();
   const max = useRef();
-  const onChange = (e) => {
-    console.log(e.target.value);
-  };
 
-  console.log("dsa");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const query = UseSearch();
+  console.log(query.get("country"));
+
+  const onChange = ({ target: { name, value } }) => {
+    navigate(`${location.pathname}${UseReplace(name, value)}`);
+  };
 
   const advancedSearch = (
     <Advanced>
       <Advanced.Title>Adress</Advanced.Title>
       <Section>
         <Input
+          value={query.get("country")}
           onChange={onChange}
           ref={country}
           name="country"
           placeholder={"Country"}
         />
         <Input
+          value={query.get("region")}
           onChange={onChange}
           ref={region}
           name="region"
           placeholder={"Region"}
         />
         <Input
+          value={query.get("city")}
           onChange={onChange}
           ref={city}
           name="city"
           placeholder={"City"}
         />
         <Input
+          value={query.get("zip_code")}
           onChange={onChange}
           ref={zip_code}
           name="zip_code"
@@ -55,18 +66,21 @@ export const Filter = () => {
       <Advanced.Title>Apartment Info</Advanced.Title>
       <Section>
         <Input
+          value={query.get("address")}
           onChange={onChange}
           ref={address}
           name="address"
           placeholder={"Address"}
         />
         <Input
+          value={query.get("house_name")}
           onChange={onChange}
           ref={house_name}
           name="house_name"
           placeholder={"House Name"}
         />
         <Input
+          value={query.get("room")}
           onChange={onChange}
           ref={room}
           name="room"
@@ -78,12 +92,14 @@ export const Filter = () => {
 
       <Section>
         <Input
+          value={query.get("min-price")}
           onChange={onChange}
           ref={min}
           name="min-price"
           placeholder={"Min price"}
         />
         <Input
+          value={query.get("max-price")}
           onChange={onChange}
           ref={max}
           name="max-price"
@@ -107,6 +123,8 @@ export const Filter = () => {
   //     key: "0",
   //   },
   // ];
+
+  console.log(UseReplace(), "useReplace");
 
   return (
     <Container>

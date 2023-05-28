@@ -12,11 +12,10 @@ export const Container = styled.div`
   /* overflow: hidden; */
   flex-direction: column;
   width: 100%;
-  min-width: 250px;
-  max-width: 381px;
+  min-width: 330px;
+  max-width: 380px;
   height: 450px;
   background: #ffffff;
-  margin: ${({ margin }) => margin && "0 1em"};
   margin-bottom: 10px;
   border: 1px solid #e6e9ec;
   border-radius: 3px;

@@ -1,4 +1,3 @@
-import { Children } from "react";
 import styled from "styled-components";
 const getType = ({ type }) => {
   switch (type) {

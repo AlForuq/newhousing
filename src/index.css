@@ -81,3 +81,17 @@ body {
   width: 200px;
   border: none;
 }
+
+.alice-carousel__dots-item.__active {
+  background: #782bc6 !important;
+}
+
+.alice-carousel__dots-item {
+  background: #9134ee57 !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: red !important;
+  font-size: 25px !important;
+}

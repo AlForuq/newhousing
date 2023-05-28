@@ -22,15 +22,15 @@ export const HouseCard = ({ info, mr, ml, margin, onClick }) => {
 
       <InfoWrapper>
         <User>
-          <User.Img src={info?.user || user} />
+          <User.Img src={user} />
         </User>
 
         <Info.Title>
-          {info?.description || "Description"}, Category:{info?.category?.name}{" "}
+          {info?.name || "Name of Property"}, Category: {info?.category?.name}{" "}
         </Info.Title>
 
         <Info.Text>
-          {info?.name || "House"}, {info?.address || "Address"},{" "}
+          {info?.address || "Address"}, {info?.region || "Region"},{" "}
           {info?.city || "City"}, {info?.country || "Country"}
         </Info.Text>
 

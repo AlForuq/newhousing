@@ -1,17 +1,15 @@
 import React from "react";
 import { Container } from "./style";
 import Carousel from "../Carousel";
-import { HouseCard } from "../HouseCard";
+import { Categories } from "../Category";
+import { Recomandation } from "./Recomandation";
 
 export const Home = () => {
   return (
     <Container>
       <Carousel />
-      <div className="center" >
-        <HouseCard />
-        <HouseCard />
-        <HouseCard />
-      </div>
+      <Recomandation />
+      <Categories />
     </Container>
   );
 };
