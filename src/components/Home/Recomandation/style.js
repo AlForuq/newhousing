@@ -12,6 +12,7 @@ export const Wrapper = styled("div")`
   position: relative;
   width: 100%;
   margin-top: 32px;
+  padding: 0 130px;
   /* border: 4px solid red; */
   /* background-color: black; */
 `;
@@ -19,7 +20,7 @@ export const Wrapper = styled("div")`
 export const Cards = styled.div`
   /* display: flex; */
   /* justify-content: center; */
-  width: 87%;
+  width: 100%;
   /* border: 4px solid blue; */
 `;
 

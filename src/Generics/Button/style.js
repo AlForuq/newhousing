@@ -34,6 +34,8 @@ const Container = styled.button`
   align-items: center;
   border-radius: 2px;
   font-size: 16px;
+  margin-top: ${({ mt }) => (mt ? mt + "px" : "0")};
+  margin-bottom: ${({ mb }) => (mb ? mb + "px" : "0")};
   margin-left: ${({ ml }) => (ml ? ml + "px" : "0")};
   margin-right: ${({ mr }) => (mr ? mr + "px" : "0")};
   height: ${({ height }) => (height ? height + "px" : "44px")};

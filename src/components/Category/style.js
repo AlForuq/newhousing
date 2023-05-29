@@ -11,13 +11,12 @@ export const Wrapper = styled("div")`
   justify-content: center;
   position: relative;
   width: 100%;
-  /* border: 1px solid black; */
+  padding: 0 130px;
   margin-top: 32px;
 `;
 
 export const Cards = styled.div`
-  width: 87%;
-  /* border: 4px solid red; */
+  width: 100%;
 `;
 
 export const ArrowLeft = styled.div`
@@ -28,31 +27,31 @@ export const ArrowLeft = styled.div`
   /* text-align: center; */
   top: 50%;
   right: 0px;
-  transform: translate(-60%, -100%);
+  transform: translate(-100%, -100%);
   width: 45px;
   height: 45px;
   color: white;
-  background: #0d263b;
-  opacity: 0.5;
   padding-left: 10px;
   box-shadow: 0px 10px 50px rgba(13, 38, 59, 0.1);
   filter: drop-shadow(0px 20px 38px rgba(0, 0, 0, 0.06))
-    drop-shadow(0px 7px 46px rgba(0, 0, 0, 0.06))
-    drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.06));
+  drop-shadow(0px 7px 46px rgba(0, 0, 0, 0.06))
+  drop-shadow(0px 8px 15px rgba(0, 0, 0, 0.06));
   border-radius: 50%;
   cursor: pointer;
   z-index: 999;
-  :hover {
+  background: #0d263b;
+  opacity: 0.5;
+  &:hover {
     opacity: 1;
   }
-  :active {
+  &:active {
     opacity: 0.7;
   }
 `;
 
 export const ArrowRight = styled(ArrowLeft)`
   left: 0px;
-  transform: translate(60%, -100%);
+  transform: translate(100%, -100%);
   padding-left: 0;
   padding-right: 10px;
 `;
