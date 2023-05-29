@@ -95,7 +95,7 @@ export const Recomandation = () => {
             </ArrowRight> */}
           <Slider {...settings}>
             {list.map((value) => {
-              return <HouseCard info={value} />;
+              return <HouseCard key={value.id} info={value} />;
             })}
           </Slider>
         </Cards>

@@ -196,7 +196,11 @@ export const Filter = () => {
         <Icon.FilterIcon />
       </Input>
 
-      <Popover placement="bottomRight" trigger="click" content={advancedSearch}>
+      <Popover
+        placement="bottomRight"
+        trigger={["click"]}
+        content={advancedSearch}
+      >
         <Button width={130} type={"light"}>
           <Icon.Setting />
           Advanced
