@@ -4,6 +4,7 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { navbar } from "../../utilis/navbar";
 import { Button } from "../../Generics";
 import { Filter } from "../Filter";
+import { Footer } from "../Footer";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -39,6 +40,7 @@ export const Navbar = () => {
       </Main>
       <Filter />
       <Outlet />
+      <Footer />
     </Container>
   );
 };

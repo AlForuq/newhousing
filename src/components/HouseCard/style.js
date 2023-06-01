@@ -4,7 +4,7 @@ import { ReactComponent as bed } from "../../assets/icons/beds.svg";
 import { ReactComponent as bath } from "../../assets/icons/bath.svg";
 import { ReactComponent as garage } from "../../assets/icons/car.svg";
 import { ReactComponent as ruler } from "../../assets/icons/ruler.svg";
-import { ReactComponent as love } from "../../assets/icons/love 1.svg";
+import { ReactComponent as love } from "../../assets/icons/love.svg";
 import { ReactComponent as resize } from "../../assets/icons/arrow-top-bottom.svg";
 
 export const Container = styled.div`
@@ -139,6 +139,9 @@ Icon.Love = styled(love)`
   cursor: pointer;
   &:active {
     transform: scale(0.8);
+  }
+  & path {
+    fill: red;
   }
 `;
 

@@ -1,24 +1,19 @@
 import styled from "styled-components";
-const getType = ({ type }) => {
-  switch (type) {
-    case "dark":
-      return {
-        background: "transparent",
-        border: "1px solid #fff",
-        color: "#fff",
-      };
 
-    case "light":
+const fixBorder = (border) => {
+  switch (border) {
+    case "open":
       return {
+        borderTop: "none",
+        borderLeft: "none",
+        borderRight: "none",
         background: "#fff",
-        border: "1px solid #e6e9ec",
-        color: "#0D263B",
+        borderBottom: "1px solid #e6e9ec",
+        outline: "none",
       };
     default:
       return {
-        background: "#0061df",
-        border: "none",
-        color: "#fff",
+        border: "1px solid #e6e9ec",
       };
   }
 };
@@ -31,14 +26,21 @@ const Container = styled.input`
   padding-left: ${({ pl }) => pl || "20px"};
   height: ${({ height }) => (height ? height + "px" : "44px")};
   width: ${({ width }) => (width ? width + "px" : "100%")};
-  /* ${getType}; */
+
+  ${({ border }) => fixBorder(border)};
+  :focus {
+    background: #fff;
+  }
 `;
 
 const Wrapper = styled.div`
   position: relative;
-  /* display: flex;
-  align-items: center; */
   width: 100%;
+
+  margin-right: ${({ mr }) => `${mr}px`};
+  margin-left: ${({ ml }) => `${ml}px`};
+  margin-top: ${({ mt }) => `${mt}px`};
+  margin-bottom: ${({ mb }) => `${mb}px`};
 `;
 
 const Icon = styled.div`

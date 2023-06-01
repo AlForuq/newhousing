@@ -3,13 +3,29 @@ import { Container, Wrapper, Icon } from "./style";
 
 export const Input = forwardRef(
   (
-    { pl, placeholder, onChange, width, height, value, name, type, children },
+    {
+      mr,
+      ml,
+      mb,
+      mt,
+      border,
+      pl,
+      placeholder,
+      onChange,
+      width,
+      height,
+      value,
+      name,
+      type,
+      children,
+    },
     ref
   ) => {
     return (
-      <Wrapper>
+      <Wrapper mr={mr} ml={ml} mb={mb} mt={mt}>
         <Icon>{children}</Icon>
         <Container
+          border={border}
           ref={ref}
           placeholder={placeholder}
           onChange={onChange}

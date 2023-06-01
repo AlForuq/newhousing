@@ -2,10 +2,10 @@ import React from "react";
 // import useUniqueId from "../hooks/useId";
 import { HomePage } from "../pages/HomePage";
 import { ContactPage } from "../pages/ContactPage";
+import { Details } from "../components/Details";
 // import { PropertiesPage } from "../pages/PropertiesPage";
 const PropertiesPage = React.lazy(() => import("../pages/PropertiesPage"));
 // import { AddNewPage } from "../pages/AddNew";
-// import { DetailsPage } from "../pages/Details";
 // import { Generic } from "../pages/generic";
 // import { MyPropertiesPage } from "../pages/MyProperties";
 // import { ProperPage } from "../pages/Properties/index";
@@ -34,16 +34,16 @@ export const navbar = [
     hidden: false,
     private: false,
   },
-  // {
-  //     id: '2-1',
-  //     title: "Properties",
-  //     path: "/properties/:id",
-  //     Element: <DetailsPage />,
-  //     search: "?",
-  //     hidden: true,
-  //     private: false,
-  //     param: true,
-  // },
+  {
+    id: "2-1",
+    title: "Properties",
+    path: "/properties/:id",
+    Element: <Details />,
+    search: "?",
+    hidden: true,
+    private: false,
+    param: true,
+  },
   {
     id: 3,
     title: "Contacts",
