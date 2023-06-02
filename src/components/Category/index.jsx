@@ -5,8 +5,9 @@ import AliceCarousel from "react-alice-carousel";
 
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
+import { useHttp } from "../../hooks/useHttp";
 
-const { REACT_APP_BASE_URL: url } = process.env;
+// const { REACT_APP_BASE_URL: url } = process.env;
 
 export const Categories = () => {
   const navigate = useNavigate();
@@ -16,24 +17,24 @@ export const Categories = () => {
     navigate(`/properties?category_id=${id}`);
   };
 
-  /* getting category's NAME [Villa, Hovli and others] in Card */
+  const { request } = useHttp();
+
   useQuery(
     "",
-    () => {
-      return fetch(
-        `${url}/v1/categories/list
-`,
-        {
-          method: "get",
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      ).then((res) => res.json());
-    },
+    () =>
+      //   fetch(
+      //     `${url}/v1/categories/list
+      // `,
+      //     {
+      //       method: "get",
+      //       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      //     }
+      //   ).then((res) => res.json()),
 
+      request({ url: "/v1/categories/list", token: true }),
     {
-      // refetchOnWindowFocus: false
       onSuccess: (res) => {
-        // console.log(res, "ResCAT");
+        console.log(res, "Category");
         let list = res?.data?.map((value) => {
           return (
             <Card onClick={() => onSelect(value.id)} title={value?.name} />

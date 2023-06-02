@@ -54,7 +54,7 @@ export const Recomandation = () => {
       .then((res) => {
         // console.log(res.data);
         setList(res?.data);
-      });
+      }).catch(()=>{});
 
     // eslint-disable-next-line
   }, []);

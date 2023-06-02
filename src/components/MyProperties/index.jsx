@@ -1,8 +1,8 @@
 import React from 'react'
 import { Container } from './style'
 
-export const Contacts = () => {
+export const MyProperties = () => {
   return (
-    <Container>Contacts</Container>
+    <Container>MyProperties</Container>
   )
 }

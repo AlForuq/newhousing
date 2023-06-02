@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Logo, LogoHeader, Main, Section, Wrapper } from "./style";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { navbar } from "../../utilis/navbar";
 import { Button } from "../../Generics";
 import { Filter } from "../Filter";
@@ -8,6 +8,21 @@ import { Footer } from "../Footer";
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const onLogin = () => {
+    navigate("/login");
+  };
+
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/home");
+    // if (location?.pathname?.includes("profile")) {
+    //   navigate("/home");
+    // } else {
+    //   navigate("/login");
+    // }
+  };
   return (
     <Container>
       <Main>
@@ -28,17 +43,29 @@ export const Navbar = () => {
             })}
           </Section>
           <Section>
-            <Button
-              type={"dark"}
-              onClick={() => navigate("./signin")}
-              width={130}
-            >
-              Login
-            </Button>
+            {localStorage.getItem("token") ? (
+              <>
+                <Button
+                  type={"dark"}
+                  onClick={() => navigate("/profile/properties")}
+                  width={130}
+                  mr={20}
+                >
+                  Profile
+                </Button>
+                <Button type={"dark"} onClick={onLogout} width={130}>
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button type={"dark"} onClick={onLogin} width={130}>
+                Login
+              </Button>
+            )}
           </Section>
         </Wrapper>
       </Main>
-      <Filter />
+      {location.pathname === "/properties" && <Filter />}
       <Outlet />
       <Footer />
     </Container>

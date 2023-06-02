@@ -1,5 +1,5 @@
-import React from 'react'
-import { AntCheck, Container } from './style'
+import React from "react";
+import { AntCheck, Container } from "./style";
 
 const Checkbox = ({
   children,
@@ -8,7 +8,7 @@ const Checkbox = ({
   // mt,
   // mb,
   onChange,
-  small
+  small,
 }) => {
   return (
     <Container>
@@ -23,7 +23,7 @@ const Checkbox = ({
         {children}
       </AntCheck>
     </Container>
-  )
-}
+  );
+};
 
-export default Checkbox
+export default Checkbox;

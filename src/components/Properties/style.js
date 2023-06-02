@@ -4,7 +4,7 @@ export const Container = styled.div`
   max-width: var(--width);
   width: 100%;
   margin: auto;
-  padding-top: 34px;
+  padding: 34px 0;
 `;
 
 export const Wrapper = styled.div`
@@ -21,4 +21,16 @@ export const Wrapper = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   grid-gap: 10px;
   padding: var(--padding);
+`;
+
+export const Message = styled.div`
+  font-family: "Montserrat";
+  font-size: 30px;
+  font-weight: 600;
+
+  font-style: normal;
+  line-height: 36px;
+  text-align: center;
+  letter-spacing: 2px;
+  color: #0d263b;
 `;

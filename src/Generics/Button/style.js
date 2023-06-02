@@ -39,7 +39,8 @@ const Container = styled.button`
   margin-left: ${({ ml }) => (ml ? ml + "px" : "0")};
   margin-right: ${({ mr }) => (mr ? mr + "px" : "0")};
   height: ${({ height }) => (height ? height + "px" : "44px")};
-  width: ${({ width }) => (width ? width + "px" : "130px")};
+  width: ${({ width }) =>
+    typeof width === "number" ? width + "px" : width || "130px"};
   min-width: ${({ width }) => (width ? width + "px" : "130px")};
   cursor: pointer;
   ${({ type }) => getType(type)};

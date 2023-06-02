@@ -26,10 +26,10 @@ const Container = styled.input`
   padding-left: ${({ pl }) => pl || "20px"};
   height: ${({ height }) => (height ? height + "px" : "44px")};
   width: ${({ width }) => (width ? width + "px" : "100%")};
-
+  
   ${({ border }) => fixBorder(border)};
-  :focus {
-    background: #fff;
+  &:focus {
+    border-bottom: ${({ border }) => border === "open" && "2px solid #0061DF"};
   }
 `;
 

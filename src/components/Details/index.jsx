@@ -34,8 +34,13 @@ export const Details = () => {
       .then((res) => {
         console.log(res?.data);
         setData(res?.data);
-      });
+      })
+      .catch(() => {});
   }, [id, url]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Container>

@@ -1,15 +1,15 @@
 import React from "react";
 // import useUniqueId from "../hooks/useId";
 import { HomePage } from "../pages/HomePage";
-import { ContactPage } from "../pages/ContactPage";
 import { Details } from "../components/Details";
+import { LoginPage } from "../pages/LoginPage";
+import { MyPropertiesPage } from "../pages/MyPropertiesPage";
 // import { PropertiesPage } from "../pages/PropertiesPage";
-const PropertiesPage = React.lazy(() => import("../pages/PropertiesPage"));
 // import { AddNewPage } from "../pages/AddNew";
 // import { Generic } from "../pages/generic";
-// import { MyPropertiesPage } from "../pages/MyProperties";
 // import { ProperPage } from "../pages/Properties/index";
 // import { SigninPage } from "../pages/Signin";
+const PropertiesPage = React.lazy(() => import("../pages/PropertiesPage"));
 
 export const navbar = [
   {
@@ -45,19 +45,10 @@ export const navbar = [
     param: true,
   },
   {
-    id: 3,
-    title: "Contacts",
-    path: "/contacts",
-    Element: <ContactPage />,
-    search: "?",
-    hidden: false,
-    private: false,
-  },
-  {
     id: 4,
-    title: "Sign In",
-    path: "/signin",
-    Element: <h1>Sign in</h1>,
+    title: "Login",
+    path: "/login",
+    Element: <LoginPage />,
     search: "?",
     hidden: true,
     private: false,
@@ -73,16 +64,16 @@ export const navbar = [
     private: false,
     // param: true,
   },
-  // {
-  //     id: 6,
-  //     title: "My Properties",
-  //     path: "/profile/properties",
-  //     Element: <MyPropertiesPage />,
-  //     search: "?",
-  //     hidden: true,
-  //     private: false,
-  //     param: true,
-  // },
+  {
+    id: 6,
+    title: "My Properties",
+    path: "/profile/properties",
+    Element: <MyPropertiesPage />,
+    search: "?",
+    hidden: true,
+    private: false,
+    param: true,
+  },
   // {
   //     id: 7,
   //     title: "Add House",

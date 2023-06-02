@@ -1,10 +1,13 @@
 import React from "react";
 import PropertiesProvider from "./properties";
+import NavbarProvider from "./navbar";
 
 const RootContext = ({ children }) => {
   return (
     <>
-      <PropertiesProvider>{children}</PropertiesProvider>
+      <PropertiesProvider>
+        <NavbarProvider>{children}</NavbarProvider>
+      </PropertiesProvider>
     </>
   );
 };
