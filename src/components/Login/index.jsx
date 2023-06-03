@@ -53,7 +53,7 @@ export const Login = () => {
       body: login,
     })
       .then((res) => {
-        console.log(res, "Login");
+        // console.log(res, "Login");
         if (res.success !== false) {
           navigate("/home");
           localStorage.setItem("token", res?.authenticationToken);
@@ -61,6 +61,7 @@ export const Login = () => {
           setLogin({ email: "", password: "" });
           info();
         } else if (!res.success) {
+          
           warning();
           setMatch("Email or Password is incorrect");
         }

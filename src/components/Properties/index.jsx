@@ -25,7 +25,7 @@ export const Properties = () => {
     fetch(`${url}/v1/houses/list${search}`, {})
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setList(res?.data);
       })
       .catch(() => {});

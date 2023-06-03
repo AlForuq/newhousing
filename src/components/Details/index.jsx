@@ -23,6 +23,7 @@ import Checkbox from "../../Generics/Checkbox";
 import { Location } from "./Location";
 import { PropertyDetails } from "./PropertyDetails";
 import { Features } from "./Features";
+// import { Yandex } from "../Yandex";
 export const Details = () => {
   const { REACT_APP_BASE_URL: url } = process.env;
   const [info, setData] = useState({});
@@ -32,7 +33,7 @@ export const Details = () => {
     fetch(`${url}/v1/houses/id/${id}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res?.data);
+        // console.log(res?.data);
         setData(res?.data);
       })
       .catch(() => {});
@@ -173,8 +174,10 @@ export const Details = () => {
       </Grid>
 
       <Location data={info} />
+      {/* <Yandex /> */}
       <PropertyDetails data={info} />
       <Features data={info} />
+
     </Container>
   );
 };

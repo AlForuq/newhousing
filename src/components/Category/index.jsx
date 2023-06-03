@@ -34,7 +34,7 @@ export const Categories = () => {
       request({ url: "/v1/categories/list", token: true }),
     {
       onSuccess: (res) => {
-        console.log(res, "Category");
+        // console.log(res, "Category");
         let list = res?.data?.map((value) => {
           return (
             <Card onClick={() => onSelect(value.id)} title={value?.name} />
