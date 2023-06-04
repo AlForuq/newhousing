@@ -7,12 +7,13 @@ import UseSearch from "../../hooks/useSearch";
 
 export const Properties = () => {
   const { REACT_APP_BASE_URL: url } = process.env;
-  const [list, setList] = useState();
-  const [title, setTitle] = useState("Properties");
-  const { search } = useLocation();
   const query = UseSearch();
-
+  const { search } = useLocation();
   const navigate = useNavigate();
+
+  const [list, setList] = useState([]);
+  // const [fav, setFav] = useState([]);
+  const [title, setTitle] = useState("Properties");
 
   useEffect(() => {
     if (!query.get("category_id")) {
@@ -21,12 +22,30 @@ export const Properties = () => {
     // eslint-disable-next-line
   }, [query.get("category_id")]);
 
+  // const { refetch } = useQuery(
+  //   [],
+  //   () => {
+  //     return fetch("http://localhost:8081/api/v1/houses/getAll/favouriteList", {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     }).then((res) => res.json());
+  //   },
+  //   {
+  //     onSuccess: (res) => {
+  //       setFav(res?.data || []);
+  //     },
+  //     refetchOnWindowFocus: false,
+  //     keepPreviousData: true,
+  //   }
+  // );
+
   useEffect(() => {
     fetch(`${url}/v1/houses/list${search}`, {})
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
-        setList(res?.data);
+        setList(res?.data || []);
       })
       .catch(() => {});
 
@@ -66,15 +85,35 @@ export const Properties = () => {
       </div>
 
       <Wrapper>
-        {list || list?.length || list !== null ? (
-          list?.map((item) => {
+        {list ? (
+          list?.map((value) => {
             return (
               <HouseCard
-                onClick={() => onSelect(item.id)}
-                key={item.id}
-                info={item}
+                onClick={() => onSelect(value.id)}
+                key={value.id}
+                info={value}
               />
             );
+            // return fav?.map((favItems) => {
+            //   if (value.id === favItems.id) {
+            //     return (
+            //       <HouseCard
+            //         favourite={favItems.favorite}
+            //         onClick={() => onSelect(value.id)}
+            //         key={value.id}
+            //         info={value}
+            //       />
+            //     );
+            //   } else {
+            //     return (
+            //       <HouseCard
+            //         onClick={() => onSelect(value.id)}
+            //         key={value.id}
+            //         info={value}
+            //       />
+            //     );
+            //   }
+            // });
           })
         ) : (
           <Message>No Data Found</Message>

@@ -4,6 +4,8 @@ import { HomePage } from "../pages/HomePage";
 import { Details } from "../components/Details";
 import { LoginPage } from "../pages/LoginPage";
 import { MyPropertiesPage } from "../pages/MyPropertiesPage";
+import { RegsiterPage } from "../pages/RegisterPage";
+import { MyFavouritesPage } from "../pages/MyFavouritesPage";
 // import { PropertiesPage } from "../pages/PropertiesPage";
 // import { AddNewPage } from "../pages/AddNew";
 // import { Generic } from "../pages/generic";
@@ -56,9 +58,9 @@ export const navbar = [
   },
   {
     id: 5,
-    title: "Sign Up",
-    path: "/signup",
-    Element: <h1>Sign up</h1>,
+    title: "Register",
+    path: "/register",
+    Element: <RegsiterPage />,
     search: "?",
     hidden: true,
     private: false,
@@ -74,8 +76,19 @@ export const navbar = [
     private: false,
     param: true,
   },
+
+  {
+    id: 7,
+    title: "My Favourites",
+    path: "/profile/properties/favourites",
+    Element: <MyFavouritesPage />,
+    search: "?",
+    hidden: true,
+    private: false,
+    param: true,
+  },
   // {
-  //     id: 7,
+  //     id: 8,
   //     title: "Add House",
   //     path: "/profile/add",
   //     Element: <AddNewPage />,
@@ -85,7 +98,7 @@ export const navbar = [
   //         param: true,
   //     },
   //     {
-  //         id: 8,
+  //         id: 10,
   //         title: "Add House",
   //         path: "/profile/add/:id",
   //         Element: <AddNewPage />,

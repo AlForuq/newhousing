@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import apart from "../../assets/images/apartment1.jpg";
 import user from "../../assets/images/avatar1.png";
+import { useNavigate } from "react-router-dom";
 
 import {
   Container,
@@ -11,12 +12,47 @@ import {
   User,
   Price,
 } from "./style";
+import { FavouritesContext } from "../../context/favourites";
+import { message } from "antd";
 
-export const HouseCard = ({ info, mr, ml, margin, onClick }) => {
-  // console.log(info, 'info');
+export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
+  const navigate = useNavigate();
+
+  const [refetch] = useContext(FavouritesContext);
+  const onFavorite = () => {
+    fetch(
+      `http://localhost:8081/api/v1/houses/addFavourite/${
+        info.id
+      }?favourite=${!favourite}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res?.success) {
+          refetch?.payload();
+
+          if (favourite) message.warning("Successfully disliked");
+          else message.info("Successfully liked");
+        }
+      })
+      .catch(() => {});
+  };
+
+  const onFav = (e) => {
+    navigate("/profile/properties/favourites");
+  };
+
   return (
-    <Container mr={mr} ml={ml} margin={margin} onClick={onClick} >
+    <Container mr={mr} ml={ml} margin={margin}>
       <Image
+        onClick={onClick}
         src={(info?.attachments && info?.attachments[0]?.imgPath) || apart}
       />
 
@@ -64,8 +100,8 @@ export const HouseCard = ({ info, mr, ml, margin, onClick }) => {
         </Price.Wrapper>
 
         <Price.IconWrapper>
-          <Icon.Resize />
-          <Icon.Love />
+          <Icon.Resize onClick={onFav} />
+          <Icon.Love onClick={onFavorite} favourite={favourite} />
         </Price.IconWrapper>
       </Price>
     </Container>

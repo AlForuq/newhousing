@@ -16,12 +16,15 @@ export const Navbar = () => {
 
   const onLogout = () => {
     localStorage.removeItem("token");
-    navigate("/home");
-    // if (location?.pathname?.includes("profile")) {
-    //   navigate("/home");
-    // } else {
-    //   navigate("/login");
-    // }
+    if (location?.pathname?.includes("profile")) {
+      navigate("/home");
+    } else {
+      navigate("/login");
+    }
+  };
+
+  const onRegister = () => {
+    navigate("/register");
   };
   return (
     <Container>
@@ -58,9 +61,14 @@ export const Navbar = () => {
                 </Button>
               </>
             ) : (
-              <Button type={"dark"} onClick={onLogin} width={130}>
-                Login
-              </Button>
+              <>
+                <Button type={"dark"} onClick={onLogin} width={130} mr={20}>
+                  Login
+                </Button>
+                <Button type={"dark"} onClick={onRegister} width={130}>
+                  Register
+                </Button>
+              </>
             )}
           </Section>
         </Wrapper>

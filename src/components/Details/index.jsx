@@ -12,7 +12,6 @@ import {
   User,
 } from "./style";
 import { useParams } from "react-router-dom";
-import img1 from "../../assets/images/detailedImg1.png";
 import img2 from "../../assets/images/detailedImg2.png";
 import img3 from "../../assets/images/detailedImg3.png";
 import img4 from "../../assets/images/detailedImg4.png";
@@ -43,11 +42,12 @@ export const Details = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  console.log(info.attachments);
   return (
     <Container>
       <Grid>
         <div className=" item1">
-          <img src={img1} alt="" />
+          <img src={info.attachments && info.attachments[0].imgPath} alt="" />
         </div>
         <div className=" item2">
           <img src={img2} alt="" />
@@ -177,7 +177,6 @@ export const Details = () => {
       {/* <Yandex /> */}
       <PropertyDetails data={info} />
       <Features data={info} />
-
     </Container>
   );
 };

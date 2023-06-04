@@ -38,6 +38,7 @@ export const Image = styled.img`
   min-height: 220px;
   max-height: 220px;
   width: 100%;
+  cursor: pointer;
   /* width: 330px; */
   /* min-width: 230px; */
 `;
@@ -134,14 +135,14 @@ Icon.Love = styled(love)`
   width: 35px;
   height: 35px;
   padding: 10px;
-  background: #f6f8f9;
+  background: ${({ favourite }) => (favourite ? "red" : "#f6f8f9")};
   border-radius: 60px;
   cursor: pointer;
   &:active {
     transform: scale(0.8);
   }
   & path {
-    fill: red;
+    stroke: ${({ favourite }) => (favourite ? "white" : "#696969")};
   }
 `;
 

@@ -11,7 +11,7 @@ import { ReactComponent as calendar } from "../../assets/icons/calendar.svg";
 export const Container = styled.div`
   max-width: var(--width);
   width: 100%;
-  padding: 0 130px;
+  padding: 34px 130px;
   margin: auto;
 `;
 
