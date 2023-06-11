@@ -3,8 +3,9 @@ import React from "react";
 import { HomePage } from "../pages/HomePage";
 import { Details } from "../components/Details";
 import { LoginPage } from "../pages/LoginPage";
-import { MyPropertiesPage } from "../pages/MyPropertiesPage";
 import { RegsiterPage } from "../pages/RegisterPage";
+import { ProfilePage } from "../pages/ProfilePage";
+import { MyPropertiesPage } from "../pages/MyPropertiesPage";
 import { MyFavouritesPage } from "../pages/MyFavouritesPage";
 // import { PropertiesPage } from "../pages/PropertiesPage";
 // import { AddNewPage } from "../pages/AddNew";
@@ -67,7 +68,7 @@ export const navbar = [
     // param: true,
   },
   {
-    id: 6,
+    id: 7,
     title: "My Properties",
     path: "/profile/properties",
     Element: <MyPropertiesPage />,
@@ -78,10 +79,20 @@ export const navbar = [
   },
 
   {
-    id: 7,
+    id: 8,
     title: "My Favourites",
     path: "/profile/properties/favourites",
     Element: <MyFavouritesPage />,
+    search: "?",
+    hidden: true,
+    private: false,
+    param: true,
+  },
+  {
+    id: 6,
+    title: "My Profile",
+    path: "/profile",
+    Element: <ProfilePage />,
     search: "?",
     hidden: true,
     private: false,

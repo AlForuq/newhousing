@@ -53,7 +53,7 @@ export const Login = () => {
       body: login,
     })
       .then((res) => {
-        console.log(res, "Login");
+        // console.log(res, "Login");
         if (res.success !== false) {
           navigate("/home");
           localStorage.setItem("token", res?.authenticationToken);

@@ -19,7 +19,7 @@ export const useHttp = () => {
       body: method === "GET" ? null : JSON.stringify(body),
     }).then((res) => res.json());
 
-    console.log(res, "resHttp");
+    // console.log(res, "resHttp");
     if (res?.success || res?.authenticationToken || res?.success === false) {
       return res;
     } else {

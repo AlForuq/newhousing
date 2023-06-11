@@ -1,11 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  max-width: var(--width);
   width: 100%;
-  margin: auto;
   padding: 34px 0;
-  border: 1px solid black;
 `;
 
 export const Wrapper = styled.div`
@@ -21,7 +18,6 @@ export const Wrapper = styled.div`
   grid-auto-flow: row;
   grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   grid-gap: 10px;
-  padding: var(--padding);
 `;
 
 export const Message = styled.div`

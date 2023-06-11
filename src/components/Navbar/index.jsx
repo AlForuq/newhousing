@@ -50,7 +50,7 @@ export const Navbar = () => {
               <>
                 <Button
                   type={"dark"}
-                  onClick={() => navigate("/profile/properties")}
+                  onClick={() => navigate("/profile")}
                   width={130}
                   mr={20}
                 >

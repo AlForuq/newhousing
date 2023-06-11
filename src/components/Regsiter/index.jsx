@@ -55,7 +55,7 @@ export const Regsiter = () => {
       //   body: login,
       // })
       .then((res) => {
-        console.log(res, "register");
+        // console.log(res, "register");
         if (!res.success) {
           warning();
           setMatch(res.message);

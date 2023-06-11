@@ -18,7 +18,7 @@ import { message } from "antd";
 export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
   const navigate = useNavigate();
 
-  const [refetch] = useContext(FavouritesContext);
+  const [refetcher] = useContext(FavouritesContext);
   const onFavorite = () => {
     fetch(
       `http://localhost:8081/api/v1/houses/addFavourite/${
@@ -34,9 +34,9 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res?.success) {
-          refetch?.payload();
+          refetcher?.fav();
 
           if (favourite) message.warning("Successfully disliked");
           else message.info("Successfully liked");
