@@ -26,7 +26,7 @@ const Container = styled.input`
   padding-left: ${({ pl }) => pl || "20px"};
   height: ${({ height }) => (height ? height + "px" : "44px")};
   width: ${({ width }) => (width ? width + "px" : "100%")};
-  
+
   ${({ border }) => fixBorder(border)};
   &:focus {
     border-bottom: ${({ border }) => border === "open" && "2px solid #0061DF"};
@@ -44,10 +44,15 @@ const Wrapper = styled.div`
 `;
 
 const Icon = styled.div`
+  transition: 1s !important;
   position: absolute;
+  /* left: ${({ children }) =>
+    typeof children === "string" ? "20px" : " 10px"}; */
   left: 10px;
-  top: 50%;
+  /* top: 50%; */
+  bottom: ${({ children }) => (typeof children === "string" ? "80%" : "3%")};
   transform: translateY(-40%);
+  color: #696969;
 `;
 
 export { Container, Wrapper, Icon };

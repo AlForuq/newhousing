@@ -9,6 +9,9 @@ const Checkbox = ({
   // mb,
   onChange,
   small,
+  value,
+  name,
+  checked,
 }) => {
   return (
     <Container>
@@ -17,7 +20,10 @@ const Checkbox = ({
         // ml={ml}
         // mb={mb}
         // mt={mt}
+        checked={checked}
+        name={name}
         size={small}
+        value={value}
         onChange={onChange}
       >
         {children}

@@ -5,8 +5,9 @@ import { Details } from "../components/Details";
 import { LoginPage } from "../pages/LoginPage";
 import { RegsiterPage } from "../pages/RegisterPage";
 import { ProfilePage } from "../pages/ProfilePage";
-import { MyPropertiesPage } from "../pages/MyPropertiesPage";
-import { MyFavouritesPage } from "../pages/MyFavouritesPage";
+import { AddPage } from "../pages/AddPage";
+// import { MyPropertiesPage } from "../pages/MyPropertiesPage";
+// import { MyFavouritesPage } from "../pages/MyFavouritesPage";
 // import { PropertiesPage } from "../pages/PropertiesPage";
 // import { AddNewPage } from "../pages/AddNew";
 // import { Generic } from "../pages/generic";
@@ -67,27 +68,27 @@ export const navbar = [
     private: false,
     // param: true,
   },
-  {
-    id: 7,
-    title: "My Properties",
-    path: "/profile/properties",
-    Element: <MyPropertiesPage />,
-    search: "?",
-    hidden: true,
-    private: false,
-    param: true,
-  },
+  // {
+  //   id: 7,
+  //   title: "My Properties",
+  //   path: "/profile/properties",
+  //   Element: <MyPropertiesPage />,
+  //   search: "?",
+  //   hidden: true,
+  //   private: false,
+  //   param: true,
+  // },
 
-  {
-    id: 8,
-    title: "My Favourites",
-    path: "/profile/properties/favourites",
-    Element: <MyFavouritesPage />,
-    search: "?",
-    hidden: true,
-    private: false,
-    param: true,
-  },
+  // {
+  //   id: 8,
+  //   title: "My Favourites",
+  //   path: "/profile/properties/favourites",
+  //   Element: <MyFavouritesPage />,
+  //   search: "?",
+  //   hidden: true,
+  //   private: false,
+  //   param: true,
+  // },
   {
     id: 6,
     title: "My Profile",
@@ -98,24 +99,24 @@ export const navbar = [
     private: false,
     param: true,
   },
-  // {
-  //     id: 8,
-  //     title: "Add House",
-  //     path: "/profile/add",
-  //     Element: <AddNewPage />,
-  //     search: "?",
-  //     hidden: true,
-  //         private: false,
-  //         param: true,
-  //     },
-  //     {
-  //         id: 10,
-  //         title: "Add House",
-  //         path: "/profile/add/:id",
-  //         Element: <AddNewPage />,
-  //         search: "?",
-  //         hidden: true,
-  //         private: false,
-  //         param: true,
-  //     },
+  {
+    id: 9,
+    title: "Add House",
+    path: "/profile/add",
+    Element: <AddPage />,
+    search: "?",
+    hidden: true,
+    private: false,
+    param: true,
+  },
+  {
+    id: 10,
+    title: "Add House",
+    path: "/profile/edit/:id",
+    Element: <AddPage />,
+    search: "?",
+    hidden: true,
+    private: false,
+    param: true,
+  },
 ];

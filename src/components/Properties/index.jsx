@@ -94,26 +94,6 @@ export const Properties = () => {
                 info={value}
               />
             );
-            // return fav?.map((favItems) => {
-            //   if (value.id === favItems.id) {
-            //     return (
-            //       <HouseCard
-            //         favourite={favItems.favorite}
-            //         onClick={() => onSelect(value.id)}
-            //         key={value.id}
-            //         info={value}
-            //       />
-            //     );
-            //   } else {
-            //     return (
-            //       <HouseCard
-            //         onClick={() => onSelect(value.id)}
-            //         key={value.id}
-            //         info={value}
-            //       />
-            //     );
-            //   }
-            // });
           })
         ) : (
           <Message>No Data Found</Message>

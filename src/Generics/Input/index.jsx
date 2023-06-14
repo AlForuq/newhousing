@@ -18,13 +18,19 @@ export const Input = forwardRef(
       name,
       type,
       children,
+      min,
+      max,
+      required,
     },
     ref
   ) => {
     return (
       <Wrapper mr={mr} ml={ml} mb={mb} mt={mt}>
-        <Icon>{children}</Icon>
+        <Icon>{children ? children : value && placeholder}</Icon>
         <Container
+          required={required}
+          min={min}
+          max={max}
           border={border}
           ref={ref}
           placeholder={placeholder}

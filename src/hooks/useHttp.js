@@ -22,9 +22,10 @@ export const useHttp = () => {
     // console.log(res, "resHttp");
     if (res?.success || res?.authenticationToken || res?.success === false) {
       return res;
-    } else {
-      throw new Error(res?.message || "Something is Wrong");
     }
+    // else {
+    //   throw new Error(res?.message || "Something is Wrong");
+    // }
   };
 
   return { request };

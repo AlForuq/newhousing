@@ -5,10 +5,13 @@ import { useHttp } from "../../hooks/useHttp";
 import { MiniHouseCard } from "./MiniHouseCard";
 import { useContext } from "react";
 import { FavouritesContext } from "../../context/favourites";
+import { Button } from "../../Generics";
+import { useNavigate } from "react-router-dom";
 const { REACT_APP_BASE_URL: url } = process.env;
 
 export const MyProperties = () => {
   const { request } = useHttp();
+  const navigate = useNavigate();
 
   const [properties, setProperties] = useState([]);
   const [refetcher, setRefetch] = useContext(FavouritesContext);
@@ -45,6 +48,10 @@ export const MyProperties = () => {
       });
   };
 
+  const onEdit = (id) => {
+    navigate(`/profile/edit/${id}`);
+  };
+
   const dataSource2 = properties.map(
     ({
       id,
@@ -75,11 +82,11 @@ export const MyProperties = () => {
         date: yearBuilt,
         actions: (
           <div style={{ display: "flex", gap: "10px" }}>
-            <IconWrapper>
+            <IconWrapper onClick={() => onEdit(id)}>
               <Edit>Edit</Edit>
             </IconWrapper>
-            <IconWrapper>
-              <Trash onClick={() => onDelete(id)}>Delete</Trash>
+            <IconWrapper onClick={() => onDelete(id)}>
+              <Trash>Delete</Trash>
             </IconWrapper>
           </div>
         ),
@@ -91,13 +98,13 @@ export const MyProperties = () => {
     {
       title: "Listing Title",
       dataIndex: "list",
-      key: "id",
+      key: "list",
       width: 450,
     },
     {
       title: "Date Published",
       dataIndex: "date",
-      key: "houseDetails.yearbuilt",
+      key: "date",
     },
     {
       title: "Actions",
@@ -108,7 +115,16 @@ export const MyProperties = () => {
 
   return (
     <Container>
-      <div className="title">My Properties</div>
+      <div className="title center">My Properties</div>
+      <div className="description center">The Houses I added!!!</div>
+      <Button
+        onClick={() => navigate("/profile/add")}
+        mb={25}
+        mt={25}
+        width={"100%"}
+      >
+        Add House
+      </Button>
       <AntdTable dataSource={dataSource2} columns={columns} />
     </Container>
   );
