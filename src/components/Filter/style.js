@@ -33,6 +33,9 @@ Icon.FilterIcon = styled(filterIcon)`
 `;
 
 const Advanced = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
   width: fit-content;
   height: fit-content;
   background: #ffffff;
@@ -49,7 +52,7 @@ Advanced.Title = styled.div`
 `;
 const Section = styled.div`
   display: flex;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   justify-content: flex-end;
   gap: 0 20px;
 `;

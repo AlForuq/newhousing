@@ -14,8 +14,10 @@ import {
 } from "./style";
 import { FavouritesContext } from "../../context/favourites";
 import { message } from "antd";
+import { KeyContext } from "../../context/key";
 
 export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
+  const [, setKey] = useContext(KeyContext);
   const navigate = useNavigate();
 
   const [refetcher] = useContext(FavouritesContext);
@@ -46,7 +48,8 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
   };
 
   const onFav = (e) => {
-    navigate("/profile/properties/favourites");
+    navigate("/profile");
+    setKey("2");
   };
 
   return (

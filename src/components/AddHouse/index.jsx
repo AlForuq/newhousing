@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Container, Section, Wrapper } from "./style";
+import { Container, Section, Selection, Wrapper } from "./style";
 import { Button, Checkbox, Input } from "../../Generics";
 import { useFormik } from "formik";
 import { useHttp } from "../../hooks/useHttp";
 import { useNavigate, useParams } from "react-router-dom";
-import { Select } from "antd";
 
 export const AddHouse = () => {
   // const { REACT_APP_BASE_URL: url } = process.env;
@@ -12,8 +11,7 @@ export const AddHouse = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // const [categ, setCateg] = useState(0);
-  const [categoryList, setCategoryList] = useState([
+  const [categoryList] = useState([
     {
       id: 1,
       name: "Villa",
@@ -150,7 +148,8 @@ export const AddHouse = () => {
             type={"number"}
             required
           /> */}
-          <select
+          <Selection
+            border={"open"}
             onChange={formik.handleChange}
             name={"categoryId"}
             value={formik.values.categoryId}
@@ -161,7 +160,7 @@ export const AddHouse = () => {
             <option value={10}>Mansion</option>
             <option value={12}>Apartment</option>
             <option value={13}>Dormitory</option>
-          </select>
+          </Selection>
         </Wrapper>
         <Wrapper>
           <Input
@@ -185,6 +184,8 @@ export const AddHouse = () => {
             type={"number"}
             placeholder={"Room"}
             border={"open"}
+            min={1}
+            max={999}
             required
           />
           <Input
@@ -194,6 +195,8 @@ export const AddHouse = () => {
             type={"number"}
             placeholder={"Bed"}
             border={"open"}
+            min={1}
+            max={999}
             required
           />
           <Input
@@ -203,6 +206,8 @@ export const AddHouse = () => {
             type={"number"}
             placeholder={"Bath"}
             border={"open"}
+            min={1}
+            max={999}
             required
           />
         </Wrapper>
@@ -214,6 +219,8 @@ export const AddHouse = () => {
             type={"number"}
             placeholder={"Garage"}
             border={"open"}
+            min={1}
+            max={999}
             required
           />
           <Input
@@ -223,6 +230,8 @@ export const AddHouse = () => {
             type={"number"}
             placeholder={"Area in Sq Ft"}
             border={"open"}
+            min={1}
+            max={999}
             required
           />
           <Input
@@ -305,6 +314,19 @@ export const AddHouse = () => {
             value={formik.values.zipCode}
             name={"zipCode"}
             placeholder={"Postal Code"}
+            border={"open"}
+            required
+          />
+        </Wrapper>
+      </Section>
+
+      <Section>
+        <Wrapper>
+          <Input
+            onChange={formik.handleChange}
+            value={formik.values.attachments[0].imgPath}
+            name={"attachments[0].imgPath"}
+            placeholder={"Image URL"}
             border={"open"}
             required
           />

@@ -44,7 +44,6 @@ const Wrapper = styled.div`
 `;
 
 const Icon = styled.div`
-  transition: 1s !important;
   position: absolute;
   /* left: ${({ children }) =>
     typeof children === "string" ? "20px" : " 10px"}; */

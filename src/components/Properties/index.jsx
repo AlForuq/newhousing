@@ -85,7 +85,7 @@ export const Properties = () => {
       </div>
 
       <Wrapper>
-        {list ? (
+        {list && list.length ? (
           list?.map((value) => {
             return (
               <HouseCard

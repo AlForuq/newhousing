@@ -51,12 +51,13 @@ export const MyProperties = () => {
   const onEdit = (id) => {
     navigate(`/profile/edit/${id}`);
   };
-
+  console.log(properties);
   const dataSource2 = properties.map(
     ({
       id,
       houseDetails: { yearBuilt },
       name,
+      category,
       country,
       address,
       city,
@@ -79,6 +80,7 @@ export const MyProperties = () => {
             region={region}
           />
         ),
+        category: category.name,
         date: yearBuilt,
         actions: (
           <div style={{ display: "flex", gap: "10px" }}>
@@ -100,6 +102,11 @@ export const MyProperties = () => {
       dataIndex: "list",
       key: "list",
       width: 450,
+    },
+    {
+      title: "Category",
+      dataIndex: "category",
+      key: "category",
     },
     {
       title: "Date Published",

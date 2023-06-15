@@ -38,3 +38,37 @@ export const Wrapper = styled.div`
     flex: 1;
   }
 `;
+
+export const Selection = styled.select`
+  flex: 1;
+  border-radius: 2px;
+  font-size: 16px;
+  border: 1px solid #e6e9ec;
+  outline: none;
+  padding-left: ${({ pl }) => pl || "20px"};
+  height: ${({ height }) => (height ? height + "px" : "44px")};
+  width: ${({ width }) => (width ? width + "px" : "100%")};
+
+  ${({ border }) => fixBorder(border)};
+  &:focus {
+    border-bottom: ${({ border }) => border === "open" && "2px solid #0061DF"};
+  }
+`;
+
+const fixBorder = (border) => {
+  switch (border) {
+    case "open":
+      return {
+        borderTop: "none",
+        borderLeft: "none",
+        borderRight: "none",
+        background: "#fff",
+        borderBottom: "1px solid #e6e9ec",
+        outline: "none",
+      };
+    default:
+      return {
+        border: "1px solid #e6e9ec",
+      };
+  }
+};
