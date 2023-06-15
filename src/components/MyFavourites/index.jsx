@@ -50,7 +50,7 @@ export const MyFavourites = () => {
               <HouseCard
                 key={value.id}
                 info={value}
-                favourite={`${value.favorite}`}
+                favourite={value.favorite}
               />
             );
           })

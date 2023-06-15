@@ -33,10 +33,10 @@ export const Regsiter = () => {
   };
 
   const info = () => {
-    message.info("Successfully Logged in");
+    message.info("Successfully Logged in", [1.5]);
   };
   const warning = () => {
-    message.warning("Failed to Login ");
+    message.warning("Failed to Login", [1.5]);
   };
 
   const onClickRegister = () => {

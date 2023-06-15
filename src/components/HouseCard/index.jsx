@@ -21,6 +21,7 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
   const navigate = useNavigate();
 
   const [refetcher] = useContext(FavouritesContext);
+
   const onFavorite = () => {
     fetch(
       `http://localhost:8081/api/v1/houses/addFavourite/${
@@ -36,12 +37,14 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         if (res?.success) {
           refetcher?.fav();
 
-          if (favourite) message.warning("Successfully disliked");
-          else message.info("Successfully liked");
+          if (favourite) {
+            message.warning("Successfully disliked", [1.5]);
+          } else {
+            message.success("Successfully liked", [1.5]);
+          }
         }
       })
       .catch(() => {});

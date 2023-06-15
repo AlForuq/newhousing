@@ -22,6 +22,7 @@ import Checkbox from "../../Generics/Checkbox";
 import { Location } from "./Location";
 import { PropertyDetails } from "./PropertyDetails";
 import { Features } from "./Features";
+import { message } from "antd";
 // import { Yandex } from "../Yandex";
 export const Details = () => {
   const { REACT_APP_BASE_URL: url } = process.env;
@@ -32,7 +33,7 @@ export const Details = () => {
     fetch(`${url}/v1/houses/id/${id}`)
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res?.data);
+        console.log(res?.data);
         setData(res?.data);
       })
       .catch(() => {});
@@ -42,7 +43,29 @@ export const Details = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(info.attachments);
+  const onFavorite = (id, favourite) => {
+    fetch(
+      `http://localhost:8081/api/v1/houses/addFavourite/${
+        info.id
+      }?favourite=${!favourite}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        // console.log(res);
+        if (res?.success) {
+          if (favourite) message.warning("Successfully disliked", [1.5]);
+          else message.info("Successfully liked", [1.5]);
+        }
+      })
+      .catch(() => {});
+  };
   return (
     <Container>
       <Grid>
@@ -78,7 +101,10 @@ export const Details = () => {
               <Icon.Share />
               <Info.Text>Share</Info.Text>
             </div>
-            <div className="social">
+            <div
+              onClick={() => onFavorite(info.id, info.favourite)}
+              className="social"
+            >
               <Icon.Love />
               <Info.Text>Like</Info.Text>
             </div>
