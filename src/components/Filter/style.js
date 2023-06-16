@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { ReactComponent as search } from "../../assets/icons/search-icon.svg";
 import { ReactComponent as setting } from "../../assets/icons/setting-line.svg";
 import { ReactComponent as filterIcon } from "../../assets/icons/filter-icon.svg";
+import { MdOutlineCancel } from "react-icons/md";
 // import { ReactComponent as house } from "../../assets/icons/";
 
 const Container = styled.div`
@@ -30,6 +31,23 @@ Icon.Setting = styled(setting)`
 `;
 Icon.FilterIcon = styled(filterIcon)`
   margin-right: 8px;
+`;
+
+Icon.Cancel = styled(MdOutlineCancel)`
+  position: absolute;
+  /* margin-right: 8px; */
+  right: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 22px;
+
+  color: #0061df;
+  cursor: pointer;
+
+  &:active {
+    color: red;
+  }
 `;
 
 const Advanced = styled.div`

@@ -135,14 +135,16 @@ Icon.Love = styled(love)`
   width: 35px;
   height: 35px;
   padding: 10px;
-  background: ${({ favourite }) => (favourite ? "red" : "#f6f8f9")};
+  background: ${({ favourite }) =>
+    favourite && JSON.parse(favourite) ? "red" : "#f6f8f9"};
   border-radius: 60px;
   cursor: pointer;
   &:active {
     transform: scale(0.8);
   }
   & path {
-    stroke: ${({ favourite }) => (favourite ? "white" : "#696969")};
+    stroke: ${({ favourite }) =>
+      favourite && JSON.parse(favourite) ? "white" : "#696969"};
   }
 `;
 

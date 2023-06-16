@@ -18,6 +18,7 @@ export const Input = forwardRef(
       name,
       type,
       children,
+      cancelIcon,
       min,
       max,
       required,
@@ -26,6 +27,7 @@ export const Input = forwardRef(
   ) => {
     return (
       <Wrapper mr={mr} ml={ml} mb={mb} mt={mt}>
+        {value && cancelIcon && cancelIcon}
         <Icon>
           {children ? children : (value || value === 0) && placeholder}
         </Icon>

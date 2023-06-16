@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Container, Icon, Advanced, Section } from "./style";
 import { Button, Input } from "../../Generics";
 import {
@@ -28,9 +28,27 @@ export const Filter = () => {
   const location = useLocation();
   const { search } = useLocation();
   const query = UseSearch();
+  const [valueFilter, setValueFilter] = useState("");
 
   const onChange = ({ target: { name, value } }) => {
     navigate(`${location.pathname}${UseReplace(name, value)}`);
+  };
+
+  const onClick = () => {
+    navigate(
+      `${location.pathname}${UseReplace(
+        address.current.name,
+        address.current.value
+      )}`
+    );
+  };
+
+  const onClear = () => {
+    address.current.value = "";
+  };
+
+  const onChangeSearch = ({ target: { value } }) => {
+    setValueFilter(value);
   };
 
   const { data } = useQuery(
@@ -113,17 +131,17 @@ export const Filter = () => {
 
       <Section>
         <Input
-          value={query.get("min-price") || ""}
+          value={query.get("min_price") || ""}
           onChange={onChange}
           ref={min}
-          name="min-price"
+          name="min_price"
           placeholder={"Min price"}
         />
         <Input
-          value={query.get("max-price") || ""}
+          value={query.get("max_price") || ""}
           onChange={onChange}
           ref={max}
-          name="max-price"
+          name="max_price"
           placeholder={"Max price"}
         />
         {/* <Select
@@ -186,12 +204,16 @@ export const Filter = () => {
   // ];
 
   // console.log(UseReplace(), "useReplace");
-
   return (
     <Container>
       <Input
         pl={"40px"}
-        placeholder={"Enter an address, neighborhood, city, or ZIP code"}
+        value={valueFilter}
+        onChange={onChangeSearch}
+        ref={address}
+        name={"address"}
+        placeholder={"Enter an address"}
+        cancelIcon={<Icon.Cancel onClick={onClear} />}
       >
         <Icon.FilterIcon />
       </Input>
@@ -219,7 +241,7 @@ export const Filter = () => {
         </Button>
       </Dropdown> */}
 
-      <Button width={130}>
+      <Button onClick={onClick} width={130}>
         <Icon.Search />
         Search
       </Button>

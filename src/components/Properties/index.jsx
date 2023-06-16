@@ -84,7 +84,7 @@ export const Properties = () => {
                 onClick={() => onSelect(value.id)}
                 key={value.id}
                 info={value}
-                favourite={value?.favorite}
+                favourite={JSON.stringify(value?.favorite)}
               />
             );
           })

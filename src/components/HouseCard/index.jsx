@@ -24,9 +24,9 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
 
   const onFavorite = () => {
     fetch(
-      `http://localhost:8081/api/v1/houses/addFavourite/${
-        info.id
-      }?favourite=${!favourite}`,
+      `http://localhost:8081/api/v1/houses/addFavourite/${info.id}?favourite=${
+        favourite && !JSON.parse(favourite)
+      }`,
       {
         method: "PUT",
         headers: {
@@ -41,7 +41,7 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
           refetcher?.fav2();
           refetcher?.fav();
 
-          if (favourite) {
+          if (favourite && JSON.parse(favourite)) {
             message.warning("Successfully disliked", [1.5]);
           } else {
             message.success("Successfully liked", [1.5]);

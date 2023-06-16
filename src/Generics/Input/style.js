@@ -24,6 +24,7 @@ const Container = styled.input`
   border: 1px solid #e6e9ec;
   outline: none;
   padding-left: ${({ pl }) => pl || "20px"};
+  padding-right: ${({ pl }) => pl || "20px"};
   height: ${({ height }) => (height ? height + "px" : "44px")};
   width: ${({ width }) => (width ? width + "px" : "100%")};
 
