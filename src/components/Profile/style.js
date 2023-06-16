@@ -5,6 +5,5 @@ export const Container = styled.div`
   width: 100%;
   margin: auto;
   padding: 0 130px;
-  border: 1px solid black;
   /* font-family: monospace; */
 `;

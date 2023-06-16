@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Message, Wrapper } from "./style";
 import { HouseCard } from "../HouseCard";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import UseSearch from "../../hooks/useSearch";
+import { FavListContext } from "../../context/favList";
 
 export const Properties = () => {
+  const [favList] = useContext(FavListContext);
+
   const { REACT_APP_BASE_URL: url } = process.env;
   const query = UseSearch();
   const { search } = useLocation();
   const navigate = useNavigate();
 
   const [list, setList] = useState([]);
-  // const [fav, setFav] = useState([]);
   const [title, setTitle] = useState("Properties");
 
   useEffect(() => {
@@ -22,36 +24,26 @@ export const Properties = () => {
     // eslint-disable-next-line
   }, [query.get("category_id")]);
 
-  // const { refetch } = useQuery(
-  //   [],
-  //   () => {
-  //     return fetch("http://localhost:8081/api/v1/houses/getAll/favouriteList", {
-  //       headers: {
-  //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //     }).then((res) => res.json());
-  //   },
-  //   {
-  //     onSuccess: (res) => {
-  //       setFav(res?.data || []);
-  //     },
-  //     refetchOnWindowFocus: false,
-  //     keepPreviousData: true,
-  //   }
-  // );
-
   useEffect(() => {
     fetch(`${url}/v1/houses/list${search}`, {})
       .then((res) => res.json())
       .then((res) => {
-        setList(res?.data || []);
+        const arr3 = res?.data?.map((obj2) => {
+          const matchingObj = favList?.find((obj1) => obj1.id === obj2.id);
+          return matchingObj
+            ? { ...obj2, favorite: matchingObj.favorite }
+            : { ...obj2, favorite: false };
+        });
+        setList(arr3);
       })
+
       .catch(() => {});
 
     // eslint-disable-next-line
-  }, [search]);
+  }, [search, favList.length]);
 
+  // console.log(favList, "fav");
+  // console.log(list, "list");
   const { isLoading, isRefetching } = useQuery(
     [query.get("category_id")],
     () =>
@@ -81,7 +73,7 @@ export const Properties = () => {
         {isLoading || isRefetching ? "Loading..." : title}
       </div>
       <div className="description center">
-        The Houses that You Want and dream!!!
+        The Houses that You Want and Dream!!!
       </div>
 
       <Wrapper>
@@ -92,6 +84,7 @@ export const Properties = () => {
                 onClick={() => onSelect(value.id)}
                 key={value.id}
                 info={value}
+                favourite={value?.favorite}
               />
             );
           })

@@ -33,7 +33,6 @@ export const Details = () => {
     fetch(`${url}/v1/houses/id/${id}`)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res?.data);
         setData(res?.data);
       })
       .catch(() => {});

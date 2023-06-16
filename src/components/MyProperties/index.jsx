@@ -51,7 +51,6 @@ export const MyProperties = () => {
   const onEdit = (id) => {
     navigate(`/profile/edit/${id}`);
   };
-  console.log(properties);
   const dataSource2 = properties.map(
     ({
       id,

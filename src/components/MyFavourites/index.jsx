@@ -4,11 +4,12 @@ import { HouseCard } from "../HouseCard";
 import { useQuery } from "react-query";
 import { FavouritesContext } from "../../context/favourites";
 import { KeyContext } from "../../context/key";
+import { useNavigate } from "react-router-dom";
 
 export const MyFavourites = () => {
   const { REACT_APP_BASE_URL: url } = process.env;
   const [fav, setFav] = useState([]);
-
+  const navigate = useNavigate();
   const [refetcher, setRefetch] = useContext(FavouritesContext);
 
   const [key] = useContext(KeyContext);
@@ -39,6 +40,10 @@ export const MyFavourites = () => {
     }
   );
 
+  const onSelect = (id) => {
+    navigate(`/properties/${id}`);
+  };
+
   return (
     <Container>
       <div className="title center">My Favourites</div>
@@ -48,6 +53,7 @@ export const MyFavourites = () => {
           fav.map((value) => {
             return (
               <HouseCard
+                onClick={() => onSelect(value.id)}
                 key={value.id}
                 info={value}
                 favourite={value.favorite}

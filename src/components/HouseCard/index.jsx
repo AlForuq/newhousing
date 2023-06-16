@@ -38,6 +38,7 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
       .then((res) => res.json())
       .then((res) => {
         if (res?.success) {
+          refetcher?.fav2();
           refetcher?.fav();
 
           if (favourite) {
