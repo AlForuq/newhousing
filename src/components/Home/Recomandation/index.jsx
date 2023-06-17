@@ -62,7 +62,7 @@ export const Recomandation = () => {
             ? { favorite: matchingObj?.favorite, ...obj2 }
             : { favorite: false, ...obj2 };
         });
-        setList(arr3);
+        setList(arr3.sort((a, b) => a.id - b.id));
       })
       .catch(() => {});
 
@@ -71,7 +71,7 @@ export const Recomandation = () => {
 
   const settings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,

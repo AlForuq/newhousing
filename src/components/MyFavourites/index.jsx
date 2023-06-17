@@ -57,7 +57,6 @@ export const MyFavourites = () => {
                 key={value.id}
                 info={value}
                 favourite={JSON.stringify(value?.favorite)}
-                
               />
             );
           })
