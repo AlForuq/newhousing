@@ -194,7 +194,9 @@ export const Filter = () => {
           onChange={changeCategory}
           value={Number(query.get("category_id")) || "Category"}
         >
-          <Select.Option value={""}>Clear</Select.Option>
+          {query.get("category_id") && (
+            <Select.Option value={""}>Clear</Select.Option>
+          )}
           {data?.data?.map((item) => {
             return (
               <Option key={item.id} value={item.id}>
