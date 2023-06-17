@@ -5,8 +5,9 @@ import { ReactComponent as bath } from "../../assets/icons/bath.svg";
 import { ReactComponent as garage } from "../../assets/icons/car.svg";
 import { ReactComponent as ruler } from "../../assets/icons/ruler.svg";
 import { ReactComponent as love } from "../../assets/icons/love.svg";
-import { ReactComponent as Share } from "../../assets/icons/Share.svg";
+import { ReactComponent as resize } from "../../assets/icons/arrow-top-bottom.svg";
 import { ReactComponent as calendar } from "../../assets/icons/calendar.svg";
+// import { ReactComponent as Share } from "../../assets/icons/Share.svg";
 
 export const Container = styled.div`
   max-width: var(--width);
@@ -183,22 +184,26 @@ Icon.Bath = styled(bath)``;
 Icon.Garage = styled(garage)``;
 Icon.Ruler = styled(ruler)``;
 Icon.Calendar = styled(calendar)``;
-Icon.Share = styled(Share)`
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background: #f6f8f9;
-  padding: 7px;
+// Icon.Share = styled(Share)`
+//   width: 35px;
+//   height: 35px;
+//   border-radius: 50%;
+//   background: #f6f8f9;
+//   padding: 7px;
+// `;
+
+Icon.Resize = styled(resize)`
+  cursor: pointer;
 `;
 
 Icon.Love = styled(love)`
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: #f6f8f9;
+  background: ${({ favorite }) => (favorite ? "red" : "#f6f8f9")};
   padding: 7px;
   & path {
-    fill: red;
+    stroke: ${({ favorite }) => (favorite ? "white" : "#696969")};
   }
 `;
 

@@ -27,7 +27,7 @@ export const Profile = () => {
       refetcher?.fav && refetcher?.fav();
     } else if (key === "1") {
       setKey(key);
-      refetcher?.fav && refetcher?.pro();
+      refetcher?.pro && refetcher?.pro();
     }
   };
   return (

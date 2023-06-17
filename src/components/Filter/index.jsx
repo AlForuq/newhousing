@@ -38,13 +38,15 @@ export const Filter = () => {
     navigate(
       `${location.pathname}${UseReplace(
         address.current.name,
-        address.current.value
+        address.current.value.trim()
       )}`
     );
   };
 
   const onClear = () => {
     address.current.value = "";
+    setValueFilter("");
+    navigate("/properties");
   };
 
   const onChangeSearch = ({ target: { value } }) => {

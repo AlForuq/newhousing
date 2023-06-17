@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   AgreeMent,
   Container,
@@ -11,7 +11,7 @@ import {
   TextArea,
   User,
 } from "./style";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import img2 from "../../assets/images/detailedImg2.png";
 import img3 from "../../assets/images/detailedImg3.png";
 import img4 from "../../assets/images/detailedImg4.png";
@@ -23,30 +23,44 @@ import { Location } from "./Location";
 import { PropertyDetails } from "./PropertyDetails";
 import { Features } from "./Features";
 import { message } from "antd";
+import { FavListContext } from "../../context/favList";
+import { FavouritesContext } from "../../context/favourites";
+import { KeyContext } from "../../context/key";
 // import { Yandex } from "../Yandex";
 export const Details = () => {
   const { REACT_APP_BASE_URL: url } = process.env;
-  const [info, setData] = useState({});
+  const [info, setInfo] = useState({});
+  const navigate = useNavigate();
   const { id } = useParams();
 
+  const [, setKey] = useContext(KeyContext);
+  const [favList] = useContext(FavListContext);
+  const [refetcher] = useContext(FavouritesContext);
   useEffect(() => {
-    fetch(`${url}/v1/houses/id/${id}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res?.data);
-      })
-      .catch(() => {});
-  }, [id, url]);
+    id &&
+      fetch(`${url}/v1/houses/id/${id}`)
+        .then((res) => res.json())
+        .then((res) => {
+          let arr1 = [res.data].map((value) => {
+            let idf = favList.find((value) => value.id === Number(id));
+            if (idf) {
+              return { ...value, favorite: idf.favorite };
+            } else {
+              return { ...value, favorite: false };
+            }
+          });
+
+          setInfo(arr1[0]);
+        })
+        .catch(() => {});
+  }, [id, url, favList]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
   const onFavorite = (id, favourite) => {
     fetch(
-      `http://localhost:8081/api/v1/houses/addFavourite/${
-        info.id
-      }?favourite=${!favourite}`,
+      `http://localhost:8081/api/v1/houses/addFavourite/${id}?favourite=${!favourite}`,
       {
         method: "PUT",
         headers: {
@@ -57,19 +71,24 @@ export const Details = () => {
     )
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
         if (res?.success) {
+          refetcher.fav2 && refetcher.fav2();
           if (favourite) message.warning("Successfully disliked", [1.5]);
-          else message.info("Successfully liked", [1.5]);
+          else message.success("Successfully liked", [1.5]);
         }
       })
       .catch(() => {});
+  };
+
+  const onFav = (e) => {
+    navigate("/profile");
+    setKey("2");
   };
   return (
     <Container>
       <Grid>
         <div className=" item1">
-          <img src={info.attachments && info.attachments[0].imgPath} alt="" />
+          <img src={info?.attachments && info.attachments[0].imgPath} alt="" />
         </div>
         <div className=" item2">
           <img src={img2} alt="" />
@@ -96,15 +115,15 @@ export const Details = () => {
         </div>
         <div className="grid-item grid2">
           <IconWrapper className="nocopy">
-            <div className="social">
-              <Icon.Share />
-              <Info.Text>Share</Info.Text>
+            <div onClick={onFav} className="social">
+              <Icon.Resize />
+              <Info.Text>Favorites</Info.Text>
             </div>
             <div
-              onClick={() => onFavorite(info.id, info.favourite)}
+              onClick={() => onFavorite(info.id, info.favorite)}
               className="social"
             >
-              <Icon.Love />
+              <Icon.Love favorite={info?.favorite} />
               <Info.Text>Like</Info.Text>
             </div>
           </IconWrapper>
@@ -146,7 +165,7 @@ export const Details = () => {
         </div>
         <div className="grid-item grid5">
           <div className="subTitle">Description</div>
-          <div className="description">{info.description}</div>
+          <div className="description">{info?.description}</div>
         </div>
 
         <div className="grid-item grid6">

@@ -30,8 +30,8 @@ export const Login = () => {
     setLogin({ ...login, [name]: value });
   };
 
-  const info = () => {
-    message.info("Successfully Logged in", [1.5]);
+  const success = () => {
+    message.success("Successfully Logged in", [1.5]);
   };
   const warning = () => {
     message.warning("Failed to Login", [1.5]);
@@ -59,9 +59,8 @@ export const Login = () => {
           localStorage.setItem("token", res?.authenticationToken);
 
           setLogin({ email: "", password: "" });
-          info();
+          success();
         } else if (!res.success) {
-          
           warning();
           setMatch("Email or Password is incorrect");
         }

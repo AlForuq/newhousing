@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import apart from "../../assets/images/apartment1.jpg";
 import user from "../../assets/images/avatar1.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import {
   Container,
@@ -13,12 +13,13 @@ import {
   Price,
 } from "./style";
 import { FavouritesContext } from "../../context/favourites";
-import { message } from "antd";
+import { Tooltip, message } from "antd";
 import { KeyContext } from "../../context/key";
 
 export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
   const [, setKey] = useContext(KeyContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [refetcher] = useContext(FavouritesContext);
 
@@ -38,10 +39,10 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
       .then((res) => res.json())
       .then((res) => {
         if (res?.success) {
-          refetcher?.fav2();
-          refetcher?.fav();
+          refetcher?.fav2 && refetcher?.fav2();
+          refetcher?.fav && refetcher?.fav();
 
-          if (favourite && JSON.parse(favourite)) {
+          if (favourite === "true") {
             message.warning("Successfully disliked", [1.5]);
           } else {
             message.success("Successfully liked", [1.5]);
@@ -107,7 +108,11 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
         </Price.Wrapper>
 
         <Price.IconWrapper>
-          <Icon.Resize onClick={onFav} />
+          {location.pathname !== "/profile" && (
+            <Tooltip placement="top" title={"Favorite List"}>
+              <Icon.Resize onClick={onFav} />
+            </Tooltip>
+          )}
           <Icon.Love onClick={onFavorite} favourite={favourite} />
         </Price.IconWrapper>
       </Price>

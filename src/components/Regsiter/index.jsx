@@ -33,7 +33,7 @@ export const Regsiter = () => {
   };
 
   const info = () => {
-    message.info("Successfully Logged in", [1.5]);
+    message.success("Successfully Logged in", [1.5]);
   };
   const warning = () => {
     message.warning("Failed to Login", [1.5]);
