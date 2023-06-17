@@ -9,7 +9,7 @@ const FavListProvider = ({ children }) => {
   const [refetcher, setRefetch] = useContext(FavouritesContext);
 
   const { refetch } = useQuery(
-    [],
+    ["favlistRefetcher"],
     () =>
       fetch("http://localhost:8081/api/v1/houses/getAll/favouriteList", {
         headers: {
@@ -22,6 +22,8 @@ const FavListProvider = ({ children }) => {
         setRefetch({ ...refetcher, fav2: refetch });
         setFavList(res?.data);
       },
+      keepPreviousData: true,
+      refetchOnWindowFocus: false,
     }
   );
   return (

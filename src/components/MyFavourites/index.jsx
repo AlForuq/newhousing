@@ -13,9 +13,9 @@ export const MyFavourites = () => {
   const [refetcher, setRefetch] = useContext(FavouritesContext);
 
   const [key] = useContext(KeyContext);
-
+  // console.log(key, "inFav");
   const favQuery = useQuery(
-    [key],
+    ["myFavorites"],
     () => {
       return (
         key === "2" &&
@@ -31,8 +31,8 @@ export const MyFavourites = () => {
       onSuccess: (resFav) => {
         if (resFav.success) {
           // console.log(resFav, "favs");
-          setFav(resFav?.data || []);
-          setRefetch({ ...refetcher, fav: favQuery.refetch });
+          setFav(resFav?.data.reverse() || []);
+          setRefetch({ ...refetcher, fav: favQuery?.refetch });
         }
       },
       keepPreviousData: true,

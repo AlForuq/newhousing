@@ -62,7 +62,7 @@ export const Recomandation = () => {
             ? { favorite: matchingObj?.favorite, ...obj2 }
             : { favorite: false, ...obj2 };
         });
-        setList(arr3.sort((a, b) => a.id - b.id));
+        setList(arr3.sort((a, b) => b.id - a.id));
       })
       .catch(() => {});
 

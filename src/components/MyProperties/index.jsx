@@ -7,24 +7,26 @@ import { useContext } from "react";
 import { FavouritesContext } from "../../context/favourites";
 import { Button } from "../../Generics";
 import { useNavigate } from "react-router-dom";
-const { REACT_APP_BASE_URL: url } = process.env;
+// import { KeyContext } from "../../context/key";
 
 export const MyProperties = () => {
+  const { REACT_APP_BASE_URL: url } = process.env;
   const { request } = useHttp();
   const navigate = useNavigate();
 
   const [properties, setProperties] = useState([]);
   const [refetcher, setRefetch] = useContext(FavouritesContext);
+  // const [key] = useContext(KeyContext);
+  // console.log(key, "Properties");
   const propertiesQuery = useQuery(
-    [],
+    ["myProperties"],
     () => request({ url: "/v1/houses/me", token: true }),
-
     {
       onSuccess: (resProp) => {
         if (resProp.success) {
           // console.log(resProp, "properties");
-          setProperties(resProp?.data || []);
-          setRefetch({ ...refetcher, pro: propertiesQuery.refetch });
+          setProperties(resProp?.data.sort((a, b) => b.id - a.id) || []);
+          setRefetch({ ...refetcher, pro: propertiesQuery?.refetch });
         }
       },
       keepPreviousData: true,

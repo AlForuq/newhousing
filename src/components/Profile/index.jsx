@@ -11,11 +11,13 @@ const items = [
     key: "1",
     label: `My Properties`,
     children: <MyProperties />,
+    // forceRender: false,
   },
   {
     key: "2",
     label: `My Favourites`,
     children: <MyFavourites />,
+    // forceRender: false,
   },
 ];
 export const Profile = () => {
@@ -24,7 +26,7 @@ export const Profile = () => {
   const onChange = (key) => {
     if (key === "2") {
       setKey(key);
-      refetcher?.fav && refetcher?.fav();
+      // refetcher?.fav && refetcher?.fav();
     } else if (key === "1") {
       setKey(key);
       refetcher?.pro && refetcher?.pro();
