@@ -38,7 +38,7 @@ export const Filter = () => {
     navigate(
       `${location.pathname}${UseReplace(
         address.current.name,
-        address.current.value.trim()
+        valueFilter.trim()
       )}`
     );
   };
@@ -46,11 +46,22 @@ export const Filter = () => {
   const onClear = () => {
     address.current.value = "";
     setValueFilter("");
-    navigate("/properties");
+    if (query.get("category_id")) {
+      navigate(`/properties?category_id=${query.get("category_id")}`);
+    } else {
+      navigate("/properties");
+    }
   };
 
   const onChangeSearch = ({ target: { value } }) => {
     setValueFilter(value);
+    if (value === "") {
+      if (query.get("category_id")) {
+        navigate(`/properties?category_id=${query.get("category_id")}`);
+      } else {
+        navigate("/properties");
+      }
+    }
   };
 
   const { data } = useQuery(
@@ -67,7 +78,13 @@ export const Filter = () => {
   );
 
   const changeCategory = (e) => {
-    navigate(`/properties?category_id=${e}`);
+    navigate(`/properties${UseReplace("category_id", e)}`);
+    setOpen(false);
+  };
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = (newOpen) => {
+    setOpen(newOpen);
   };
 
   const advancedSearch = (
@@ -177,7 +194,7 @@ export const Filter = () => {
           onChange={changeCategory}
           value={Number(query.get("category_id")) || "Category"}
         >
-          {/* <Select.Option value={""}>Select Category</Select.Option> */}
+          <Select.Option value={""}>Clear</Select.Option>
           {data?.data?.map((item) => {
             return (
               <Option key={item.id} value={item.id}>
@@ -205,7 +222,6 @@ export const Filter = () => {
   //   },
   // ];
 
-  // console.log(UseReplace(), "useReplace");
   return (
     <Container>
       <Input
@@ -220,10 +236,17 @@ export const Filter = () => {
         <Icon.FilterIcon />
       </Input>
 
+      <Button onClick={onClick} width={130}>
+        <Icon.Search />
+        Search
+      </Button>
+
       <Popover
         placement="bottomRight"
         trigger={["click"]}
         content={advancedSearch}
+        open={open}
+        onOpenChange={handleOpenChange}
       >
         <Button width={130} type={"light"}>
           <Icon.Setting />
@@ -242,11 +265,6 @@ export const Filter = () => {
           Advanced
         </Button>
       </Dropdown> */}
-
-      <Button onClick={onClick} width={130}>
-        <Icon.Search />
-        Search
-      </Button>
     </Container>
   );
 };
