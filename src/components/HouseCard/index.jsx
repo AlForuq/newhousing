@@ -59,10 +59,12 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
 
   return (
     <Container mr={mr} ml={ml} margin={margin}>
-      <Image
-        onClick={onClick}
-        src={(info?.attachments && info?.attachments[0]?.imgPath) || apart}
-      />
+      <Tooltip zIndex={99} placement="center" title={"Detailed Page"}>
+        <Image
+          onClick={onClick}
+          src={(info?.attachments && info?.attachments[0]?.imgPath) || apart}
+        />
+      </Tooltip>
 
       <InfoWrapper>
         <User>
@@ -108,9 +110,13 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
         </Price.Wrapper>
 
         <Price.IconWrapper>
-          {location.pathname !== "/profile" && (
+          {location.pathname !== "/profile" ? (
             <Tooltip placement="top" title={"Favorite List"}>
               <Icon.Resize onClick={onFav} />
+            </Tooltip>
+          ) : (
+            <Tooltip placement="top" title={"Properties"}>
+              <Icon.Resize onClick={() => navigate("/properties")} />
             </Tooltip>
           )}
           <Icon.Love onClick={onFavorite} favourite={favourite} />

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"; // useState // useRef,
+import React, { useState, useEffect, useContext } from "react"; // useState // useRef,
 // import AliceCarousel from "react-alice-carousel";
 import { HouseCard } from "../../HouseCard";
 import {
@@ -8,6 +8,8 @@ import {
   Wrapper,
 } from "./style";
 import Slider from "react-slick";
+import { useNavigate } from "react-router-dom";
+import { FavListContext } from "../../../context/favList";
 // import { useQuery } from "react-query";
 
 // import {useQuery} from 'react-query'
@@ -15,6 +17,7 @@ import Slider from "react-slick";
 const { REACT_APP_BASE_URL: url } = process.env;
 export const Recomandation = () => {
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
   // useQuery(
   //   "",
   //   () => {
@@ -47,18 +50,24 @@ export const Recomandation = () => {
   //   <HouseCard />,
   //   <HouseCard />,
   // ];
+  const [favList] = useContext(FavListContext);
 
   useEffect(() => {
     fetch(`${url}/v1/houses/list`, {})
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res.data);
-        setList(res?.data);
+        const arr3 = res?.data?.map((obj2) => {
+          const matchingObj = favList?.find((obj1) => obj1.id === obj2.id);
+          return matchingObj
+            ? { favorite: matchingObj?.favorite, ...obj2 }
+            : { favorite: false, ...obj2 };
+        });
+        setList(arr3);
       })
       .catch(() => {});
 
     // eslint-disable-next-line
-  }, []);
+  }, [favList.length]);
 
   const settings = {
     dots: true,
@@ -96,7 +105,17 @@ export const Recomandation = () => {
             </ArrowRight> */}
           <Slider {...settings}>
             {list.map((value) => {
-              return <HouseCard key={value.id} info={value} />;
+              return (
+                <HouseCard
+                  onClick={() => navigate(`/properties/${value.id}`)}
+                  key={value.id}
+                  info={value}
+                  favourite={
+                    (value.favorite === false || value.favorite === true) &&
+                    JSON.stringify(value.favorite)
+                  }
+                />
+              );
             })}
           </Slider>
         </Cards>
