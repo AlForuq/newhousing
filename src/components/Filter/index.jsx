@@ -28,7 +28,7 @@ export const Filter = () => {
   const location = useLocation();
   const { search } = useLocation();
   const query = UseSearch();
-  const [valueFilter, setValueFilter] = useState("");
+  const [addressFilter, setAddressFilter] = useState("");
 
   const onChange = ({ target: { name, value } }) => {
     navigate(`${location.pathname}${UseReplace(name, value)}`);
@@ -36,30 +36,23 @@ export const Filter = () => {
 
   const onClick = () => {
     navigate(
-      `${location.pathname}${UseReplace(
-        address.current.name,
-        valueFilter.trim()
-      )}`
+      `${location.pathname}${UseReplace("address", addressFilter.trim())}`
     );
   };
 
   const onClear = () => {
-    address.current.value = "";
-    setValueFilter("");
-    if (query.get("category_id")) {
-      navigate(`/properties?category_id=${query.get("category_id")}`);
-    } else {
-      navigate("/properties");
+    // address.current.value = "";
+    setAddressFilter("");
+    if (query.get("address")) {
+      navigate(`${location.pathname}${UseReplace("address", "")}`);
     }
   };
 
   const onChangeSearch = ({ target: { value } }) => {
-    setValueFilter(value);
+    setAddressFilter(value);
     if (value === "") {
-      if (query.get("category_id")) {
-        navigate(`/properties?category_id=${query.get("category_id")}`);
-      } else {
-        navigate("/properties");
+      if (query.get("address")) {
+        navigate(`${location.pathname}${UseReplace("address", value)}`);
       }
     }
   };
@@ -85,6 +78,12 @@ export const Filter = () => {
 
   const handleOpenChange = (newOpen) => {
     setOpen(newOpen);
+  };
+
+  const onReset = () => {
+    navigate("/properties");
+    setOpen(false);
+    setAddressFilter("");
   };
 
   const advancedSearch = (
@@ -208,11 +207,8 @@ export const Filter = () => {
       </Section>
 
       <Section>
-        <Button width={130} ml={20} type="primary">
-          Search
-        </Button>
-        <Button width={131} ml={20} type="secondary">
-          Cancel
+        <Button onClick={onReset} width={130} type="primary">
+          Reset
         </Button>
       </Section>
     </Advanced>
@@ -228,9 +224,9 @@ export const Filter = () => {
     <Container>
       <Input
         pl={"40px"}
-        value={valueFilter}
+        value={addressFilter}
         onChange={onChangeSearch}
-        ref={address}
+        // ref={address}
         name={"address"}
         placeholder={"Enter an address"}
         cancelIcon={<Icon.Cancel onClick={onClear} />}
