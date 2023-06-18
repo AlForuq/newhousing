@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Container } from "./style";
 import { Button, Input } from "../../Generics";
 import Checkbox from "../../Generics/Checkbox";
@@ -6,7 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useHttp } from "../../hooks/useHttp";
 
 import { message } from "antd";
+import { FavouritesContext } from "../../context/favourites";
 export const Login = () => {
+  const [refetcher] = useContext(FavouritesContext);
   // const { REACT_APP_BASE_URL: url } = process.env;
   const navigate = useNavigate();
   const [bool, setBool] = useState("password");
@@ -55,7 +57,9 @@ export const Login = () => {
       .then((res) => {
         // console.log(res, "Login");
         if (res.success !== false) {
+          refetcher.fav2 && refetcher.fav2();
           navigate("/home");
+
           localStorage.setItem("token", res?.authenticationToken);
 
           setLogin({ email: "", password: "" });
