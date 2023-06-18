@@ -10,10 +10,10 @@ import UseSearch from "../../hooks/useSearch";
 import { UseReplace } from "../../hooks/useReplace";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
-const { Option } = Select;
-const { REACT_APP_BASE_URL: url } = process.env;
 
 export const Filter = () => {
+  const { Option } = Select;
+  const { REACT_APP_BASE_URL: url } = process.env;
   const country = useRef();
   const region = useRef();
   const city = useRef();

@@ -11,7 +11,7 @@ export const Properties = () => {
 
   const { REACT_APP_BASE_URL: url } = process.env;
   const query = UseSearch();
-  const { search, pathname } = useLocation();
+  const { search } = useLocation();
   const navigate = useNavigate();
 
   const [list, setList] = useState([]);

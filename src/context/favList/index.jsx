@@ -5,13 +5,14 @@ import { FavouritesContext } from "../favourites";
 export const FavListContext = createContext();
 
 const FavListProvider = ({ children }) => {
+  const { REACT_APP_BASE_URL: url } = process.env;
   const [favList, setFavList] = useState([]);
   const [refetcher, setRefetch] = useContext(FavouritesContext);
 
   const { refetch } = useQuery(
     ["favlistRefetcher"],
     () =>
-      fetch("http://localhost:8081/api/v1/houses/getAll/favouriteList", {
+      fetch(`${url}/v1/houses/getAll/favouriteList`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "application/json",

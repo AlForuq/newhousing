@@ -14,8 +14,8 @@ import { FavListContext } from "../../../context/favList";
 
 // import {useQuery} from 'react-query'
 
-const { REACT_APP_BASE_URL: url } = process.env;
 export const Recomandation = () => {
+  const { REACT_APP_BASE_URL: url } = process.env;
   const [list, setList] = useState([]);
   const navigate = useNavigate();
   // useQuery(

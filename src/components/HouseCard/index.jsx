@@ -17,6 +17,7 @@ import { Tooltip, message } from "antd";
 import { KeyContext } from "../../context/key";
 
 export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
+  const { REACT_APP_BASE_URL: url } = process.env;
   const [, setKey] = useContext(KeyContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +26,7 @@ export const HouseCard = ({ favourite, info, mr, ml, margin, onClick }) => {
 
   const onFavorite = () => {
     fetch(
-      `http://localhost:8081/api/v1/houses/addFavourite/${info.id}?favourite=${
+      `${url}/v1/houses/addFavourite/${info.id}?favourite=${
         favourite && !JSON.parse(favourite)
       }`,
       {

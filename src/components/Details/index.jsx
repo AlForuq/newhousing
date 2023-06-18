@@ -59,16 +59,13 @@ export const Details = () => {
     window.scrollTo(0, 0);
   }, []);
   const onFavorite = (id, favourite) => {
-    fetch(
-      `http://localhost:8081/api/v1/houses/addFavourite/${id}?favourite=${!favourite}`,
-      {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    fetch(`${url}/v1/houses/addFavourite/${id}?favourite=${!favourite}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
+      },
+    })
       .then((res) => res.json())
       .then((res) => {
         if (res?.success) {

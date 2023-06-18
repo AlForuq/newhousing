@@ -6,7 +6,7 @@ import { useHttp } from "../../hooks/useHttp";
 import { useNavigate, useParams } from "react-router-dom";
 
 export const AddHouse = () => {
-  // const { REACT_APP_BASE_URL: url } = process.env;
+  const { REACT_APP_BASE_URL: url } = process.env;
   const { request } = useHttp();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -92,7 +92,7 @@ export const AddHouse = () => {
 
   useEffect(() => {
     id &&
-      fetch(`http://localhost:8081/api/v1/houses/id/${id}`)
+      fetch(`${url}/v1/houses/id/${id}`)
         .then((res) => res.json())
         .then((res) => {
           if (res?.success) {
