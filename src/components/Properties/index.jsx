@@ -11,7 +11,7 @@ export const Properties = () => {
 
   const { REACT_APP_BASE_URL: url } = process.env;
   const query = UseSearch();
-  const { search } = useLocation();
+  const { search, pathname } = useLocation();
   const navigate = useNavigate();
 
   const [list, setList] = useState([]);
@@ -24,6 +24,8 @@ export const Properties = () => {
     // eslint-disable-next-line
   }, [query.get("category_id")]);
 
+  console.log(search, "search");
+
   useEffect(() => {
     fetch(`${url}/v1/houses/list${search}`, {})
       .then((res) => res.json())
@@ -34,7 +36,7 @@ export const Properties = () => {
             ? { ...obj2, favorite: matchingObj.favorite }
             : { ...obj2, favorite: false };
         });
-        setList(arr3.sort((a, b) => b.id - a.id));
+        setList(arr3?.sort((a, b) => b.id - a.id));
       })
 
       .catch(() => {});
