@@ -23,9 +23,9 @@ import {
   Wrapper,
 } from "./style";
 
-
 export const Footer = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const year = new Date();
   return (
     <MainWrapper>
       <Container>
@@ -46,14 +46,14 @@ export const Footer = () => {
               <ContactWrapper>
                 <PhoneIcon />
                 <ContactDetail>
-                  <InfoText>+998 94 006 76 50</InfoText>
+                  <InfoText>+998 94 692 08 03</InfoText>
                 </ContactDetail>
               </ContactWrapper>
 
               <ContactWrapper>
                 <MailIcon />
                 <ContactDetail>
-                  <InfoText>muhammd.alforuq@gmail.com</InfoText>
+                  <InfoText>muhammad.alforuq@gmail.com</InfoText>
                 </ContactDetail>
               </ContactWrapper>
             </Wrapper>
@@ -114,7 +114,8 @@ export const Footer = () => {
             <Logo.Title>Housing</Logo.Title>
           </Logo>
           <InfoText>
-            Copyright © 2021 CreativeLayers. All Right Reserved.
+            Copyright © {year.getFullYear()} Creative Layers. All Right
+            Reserved.
           </InfoText>
         </CopyRight>
       </Container>
